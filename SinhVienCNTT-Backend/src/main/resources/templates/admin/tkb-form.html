@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('TKB - Form')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: sidebar}"></nav>
+<div class="main-content">
+    <div class="page-header"><h2><i class="bi bi-calendar-week"></i> <span th:text="${isNew} ? 'Thêm mới TKB' : 'Sửa TKB'"></span></h2></div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <form th:action="@{/admin/tkb/save}" method="post" th:object="${tkb}">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Mã sinh viên *</label>
+                        <input type="text" class="form-control" th:field="*{maSinhVien}" required/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mã học phần *</label>
+                        <input type="text" class="form-control" th:field="*{maHocPhan}" required/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Tên học phần *</label>
+                        <input type="text" class="form-control" th:field="*{tenHocPhan}" required/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mã giảng viên</label>
+                        <input type="text" class="form-control" th:field="*{maGiangVien}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Tên giảng viên</label>
+                        <input type="text" class="form-control" th:field="*{tenGiangVien}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Phòng học</label>
+                        <input type="text" class="form-control" th:field="*{phongHoc}" placeholder="A3-302"/>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Thứ *</label>
+                        <select class="form-select" th:field="*{thu}" required>
+                            <option value="2">Thứ 2</option>
+                            <option value="3">Thứ 3</option>
+                            <option value="4">Thứ 4</option>
+                            <option value="5">Thứ 5</option>
+                            <option value="6">Thứ 6</option>
+                            <option value="7">Thứ 7</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Tiết bắt đầu *</label>
+                        <input type="text" class="form-control" th:field="*{tietBatDau}" placeholder="1" required/>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Tiết kết thúc *</label>
+                        <input type="text" class="form-control" th:field="*{tietKetThuc}" placeholder="3" required/>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Giờ bắt đầu</label>
+                        <input type="text" class="form-control" th:field="*{gioBatDau}" placeholder="7:00"/>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Giờ kết thúc</label>
+                        <input type="text" class="form-control" th:field="*{gioKetThuc}" placeholder="9:30"/>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Nhóm</label>
+                        <input type="text" class="form-control" th:field="*{nhom}" placeholder="01"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Kỳ học *</label>
+                        <select class="form-select" th:field="*{maKy}" required>
+                            <option th:each="ky : ${kyHocList}" th:value="${ky.maKy}" th:text="${ky.maKy + ' - ' + ky.tenKy}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Lưu</button>
+                    <a th:href="@{/admin/tkb(msv=${tkb.maSinhVien})}" class="btn btn-secondary ms-2">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

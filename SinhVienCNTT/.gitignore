@@ -1,0 +1,57 @@
+# ==================== TỰ ĐỘNG IGNORE ====================
+
+# --- File extension bỏ qua ---
+*.txt
+*.sh
+*.md
+
+# --- Ngoại lệ: giữ lại ---
+!taikhoan.txt
+
+# --- Android / Gradle ---
+*.iml
+.gradle/
+/local.properties
+local.properties
+/.idea/
+.DS_Store
+/build/
+/captures
+.externalNativeBuild
+.cxx
+/app/build/
+*.apk
+*.aab
+*.ap_
+*.dex
+/app/release/
+
+# --- Dependencies ---
+node_modules/
+
+# --- IDE & Editor ---
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+Thumbs.db
+desktop.ini
+
+# --- Environment & Secret ---
+.env
+.env.local
+.env.production
+*.pem
+*.key
+credentials.json
+
+# --- Log & Cache ---
+*.log
+.cache/
+.temp/
+.tmp/
+
+# --- Crawled data (dữ liệu tạm) ---
+crawled_data/

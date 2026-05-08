@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Palette - Deep Indigo -->
+    <color name="primary">#1B2A4A</color>
+    <color name="primary_dark">#0F1B33</color>
+    <color name="primary_light">#2D4373</color>
+
+    <!-- Accent - Teal -->
+    <color name="accent">#2EC4B6</color>
+    <color name="accent_dark">#1FA898</color>
+    <color name="accent_light">#5EDED3</color>
+
+    <!-- CTA - Coral -->
+    <color name="coral">#FF6B6B</color>
+    <color name="coral_dark">#E85555</color>
+
+    <!-- Warm Orange -->
+    <color name="orange">#FF8C42</color>
+    <color name="orange_light">#FFB07A</color>
+
+    <!-- Purple accent -->
+    <color name="purple">#7C5CFC</color>
+    <color name="purple_light">#A78BFA</color>
+
+    <!-- Sky Blue -->
+    <color name="sky_blue">#38BDF8</color>
+
+    <!-- Emerald -->
+    <color name="emerald">#34D399</color>
+
+    <!-- Background -->
+    <color name="bg_main">#F0F4F8</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_input">#F7F8FC</color>
+
+    <!-- Text -->
+    <color name="text_primary">#1B2A4A</color>
+    <color name="text_secondary">#6B7B8D</color>
+    <color name="text_hint">#A0AEC0</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <!-- Divider -->
+    <color name="divider">#E8ECF0</color>
+
+    <!-- Card colors for dashboard items -->
+    <color name="card_tkb">#EEF2FF</color>
+    <color name="card_tkb_icon">#6366F1</color>
+    <color name="card_bangdiem">#FEF3C7</color>
+    <color name="card_bangdiem_icon">#F59E0B</color>
+    <color name="card_khoa">#D1FAE5</color>
+    <color name="card_khoa_icon">#10B981</color>
+    <color name="card_phongdaotao">#FCE7F3</color>
+    <color name="card_phongdaotao_icon">#EC4899</color>
+    <color name="card_truong">#DBEAFE</color>
+    <color name="card_truong_icon">#3B82F6</color>
+    <color name="card_thongtin">#FEE2E2</color>
+    <color name="card_thongtin_icon">#EF4444</color>
+    <color name="card_hoidap">#E0E7FF</color>
+    <color name="card_hoidap_icon">#7C5CFC</color>
+
+    <color name="card_profile">#E0F2FE</color>
+    <color name="card_profile_icon">#0891B2</color>
+
+    <!-- Status bar -->
+    <color name="status_bar">#0F1B33</color>
+</resources>

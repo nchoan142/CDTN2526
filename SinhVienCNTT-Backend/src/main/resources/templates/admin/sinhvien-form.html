@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Sinh viên - Form')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: sidebar}"></nav>
+<div class="main-content">
+    <div class="page-header">
+        <h2><i class="bi bi-people"></i> <span th:text="${sinhVien.id != null} ? 'Sửa Sinh viên' : 'Thêm Sinh viên'"></span></h2>
+    </div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <form th:action="@{/admin/sinhvien/save}" method="post" th:object="${sinhVien}">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="row g-3">
+                    <div class="col-md-4"><label class="form-label">Mã SV *</label><input type="text" class="form-control" th:field="*{maSinhVien}" required/></div>
+                    <div class="col-md-4"><label class="form-label">Mật khẩu</label><input type="text" class="form-control" th:field="*{password}" placeholder="Nhập mật khẩu mới..."/></div>
+                    <!--                    <div class="col-md-4"><label class="form-label">Họ tên đệm</label><input type="text" class="form-control" th:field="*{hoTenDem}"/></div>-->
+                    <div class="col-md-4"><label class="form-label">Tên *</label><input type="text" class="form-control" th:field="*{ten}" required/></div>
+                    <div class="col-md-3"><label class="form-label">Ngày sinh</label><input type="text" class="form-control" th:field="*{ngaySinh}" placeholder="DD-MM-YY"/></div>
+                    <div class="col-md-3"><label class="form-label">Lớp chuyên ngành</label><input type="text" class="form-control" th:field="*{lopChuyenNganh}"/></div>
+                    <div class="col-md-3"><label class="form-label">Ngành</label><input type="text" class="form-control" th:field="*{nganh}"/></div>
+                    <!--                    <div class="col-md-3"><label class="form-label">Khoá</label><input type="text" class="form-control" th:field="*{khoa}"/></div>-->
+                    <div class="col-md-4"><label class="form-label">Email 1</label><input type="email" class="form-control" th:field="*{email1}"/></div>
+                    <div class="col-md-4"><label class="form-label">Email 2</label><input type="email" class="form-control" th:field="*{email2}"/></div>
+                    <div class="col-md-4"><label class="form-label">Khóa nhập học</label><input type="text" class="form-control" th:field="*{nhapHoc}"/></div>
+                    <div class="col-md-3"><label class="form-label">SĐT 1</label><input type="text" class="form-control" th:field="*{dienThoai1}"/></div>
+                    <div class="col-md-3"><label class="form-label">SĐT 2</label><input type="text" class="form-control" th:field="*{dienThoai2}"/></div>
+                    <div class="col-md-3"><label class="form-label">Khoá nhập học</label><input type="text" class="form-control" th:field="*{khoaNhapHoc}"/></div>
+                    <div class="col-md-3"><label class="form-label">Trạng thái</label><select class="form-select" th:field="*{trangThai}"><option value="0">Hoạt động</option><option value="1">Khoá</option></select></div>
+                    <div class="col-12"><label class="form-label">Ghi chú</label><textarea class="form-control" th:field="*{ghiChu}" rows="2"></textarea></div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Lưu</button>
+                    <a href="/admin/sinhvien" class="btn btn-secondary ms-2">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

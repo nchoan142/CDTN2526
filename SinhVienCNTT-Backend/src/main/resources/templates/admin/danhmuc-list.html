@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Quản lý Danh mục')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: sidebar}"></nav>
+<div class="main-content">
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h2><i class="bi bi-grid"></i> Quản lý Danh mục</h2>
+        <a href="/admin/danhmuc/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
+    </div>
+    <div th:replace="~{fragments/layout :: alert}"></div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead><tr><th>#</th><th>Tên viết tắt</th><th>Tên đầy đủ</th><th>Loại</th><th>Mã MH / Link</th><th>Người QL</th><th>Đang dùng</th><th>Thao tác</th></tr></thead>
+                    <tbody>
+                        <tr th:each="dm, i : ${list}">
+                            <td th:text="${i.index + 1}"></td>
+                            <td><span class="badge bg-secondary" th:text="${dm.tenVietTat}"></span></td>
+                            <td th:text="${dm.tenDayDu}"></td>
+                            <td>
+                                <span class="badge"
+                                      th:classappend="${dm.loai == 'BUILTIN'} ? ' bg-info' : ' bg-warning text-dark'"
+                                      th:text="${dm.loai}"></span>
+                            </td>
+                            <td>
+                                <span th:if="${dm.loai == 'BUILTIN'}" th:text="${dm.maManHinh ?: '—'}"></span>
+                                <a th:if="${dm.loai == 'WEBVIEW' and dm.linkTruyCap != null and dm.linkTruyCap != ''}"
+                                   th:href="${dm.linkTruyCap}" target="_blank"
+                                   th:text="${#strings.abbreviate(dm.linkTruyCap, 40)}"></a>
+                                <span th:if="${dm.loai == 'WEBVIEW' and (dm.linkTruyCap == null or dm.linkTruyCap == '')}">—</span>
+                            </td>
+                            <td th:text="${dm.nguoiQuanLy}"></td>
+                            <td><span th:if="${dm.dangDung}" class="badge bg-success">On</span><span th:unless="${dm.dangDung}" class="badge bg-secondary">Off</span></td>
+                            <td>
+                                <a th:href="@{/admin/danhmuc/edit/{id}(id=${dm.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>
+                                <a th:href="@{/admin/danhmuc/delete/{id}(id=${dm.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

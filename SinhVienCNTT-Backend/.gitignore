@@ -1,0 +1,59 @@
+# ==================== TỰ ĐỘNG IGNORE ====================
+
+# --- File extension bỏ qua ---
+*.txt
+*.sh
+*.md
+
+# --- Ngoại lệ: giữ lại ---
+!taikhoan.txt
+
+# --- Java / Spring Boot / Maven ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+.mvn/wrapper/maven-wrapper.jar
+
+# --- Gradle (nếu dùng) ---
+.gradle/
+build/
+
+# --- IDE & Editor ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.factorypath
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Environment & Secret ---
+.env
+.env.local
+.env.production
+*.pem
+*.key
+credentials.json
+
+# --- Log & Cache ---
+*.log
+*.log.*
+.cache/
+.temp/
+.tmp/
+
+# --- Spring Boot ---
+/logs/
+/data/
+hs_err_pid*

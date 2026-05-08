@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${title}">Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
+        .sidebar { width: 260px; min-height: 100vh; background: linear-gradient(135deg, #1B2A4A 0%, #2d3f63 100%); position: fixed; top: 0; left: 0; z-index: 100; }
+        .sidebar .brand { padding: 20px; color: #fff; font-size: 1.2rem; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar .nav-link { color: rgba(255,255,255,0.7); padding: 12px 20px; font-size: 0.9rem; border-radius: 0; transition: all 0.2s; }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active { color: #fff; background: rgba(255,255,255,0.1); }
+        .sidebar .nav-link i { width: 24px; margin-right: 8px; }
+        .main-content { margin-left: 260px; padding: 24px; }
+        .stat-card { border: none; border-radius: 12px; transition: transform 0.2s; }
+        .stat-card:hover { transform: translateY(-2px); }
+        .stat-card .card-body { padding: 20px; }
+        .stat-number { font-size: 2rem; font-weight: 700; }
+        .table th { background: #f8f9fa; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .btn-action { padding: 4px 10px; font-size: 0.8rem; }
+        .page-header { margin-bottom: 24px; }
+        .page-header h2 { font-weight: 700; color: #1B2A4A; }
+    </style>
+</head>
+<body>
+<nav th:fragment="sidebar" class="sidebar d-flex flex-column">
+    <div class="brand"><i class="bi bi-mortarboard-fill"></i> SV CNTT Admin</div>
+    <ul class="nav flex-column mt-2">
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'dashboard'} ? 'active'" href="/admin/dashboard"><i class="bi bi-speedometer2"></i>Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'sinhvien'} ? 'active'" href="/admin/sinhvien"><i class="bi bi-people"></i>Sinh viên</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'giangvien'} ? 'active'" href="/admin/giangvien"><i class="bi bi-person-badge"></i>Giảng viên</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'kyhoc'} ? 'active'" href="/admin/kyhoc"><i class="bi bi-calendar3"></i>Kỳ học</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'bangdiem'} ? 'active'" href="/admin/bangdiem"><i class="bi bi-journal-check"></i>Bảng điểm</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'tkb'} ? 'active'" href="/admin/tkb"><i class="bi bi-calendar-week"></i>Thời khoá biểu</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'cvht'} ? 'active'" href="/admin/cvht"><i class="bi bi-person-lines-fill"></i>Cố vấn HT</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'thongbao'} ? 'active'" href="/admin/thongbao"><i class="bi bi-megaphone"></i>Thông báo</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'tintuc'} ? 'active'" href="/admin/tintuc"><i class="bi bi-newspaper"></i>Tin tức</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'hoidap'} ? 'active'" href="/admin/hoidap"><i class="bi bi-chat-dots"></i>Hỏi đáp</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'danhmuc'} ? 'active'" href="/admin/danhmuc"><i class="bi bi-grid"></i>Danh mục</a></li>
+    </ul>
+    <div class="mt-auto p-3 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+<!--        <a href="/admin/logout" class="nav-link text-white-50"><i class="bi bi-box-arrow-left"></i> Đăng xuất</a>-->
+        <form th:action="@{/logout}" method="post" class="m-0 p-0">
+            <button type="submit" class="nav-link text-white-50 bg-transparent border-0 w-100 text-start"><i class="bi bi-box-arrow-left"></i> Đăng xuất</button>
+        </form>
+    </div>
+</nav>
+<div th:fragment="alert">
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${success}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

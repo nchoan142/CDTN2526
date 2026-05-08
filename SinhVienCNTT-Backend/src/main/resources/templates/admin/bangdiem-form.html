@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Bảng điểm - Form')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: sidebar}"></nav>
+<div class="main-content">
+    <div class="page-header"><h2><i class="bi bi-journal-check"></i> <span th:text="${isNew} ? 'Thêm mới Bảng điểm' : 'Cập nhật điểm'"></span></h2></div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <form th:action="@{/admin/bangdiem/save}" method="post" th:object="${bangDiem}">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Mã sinh viên *</label>
+                        <input type="text" class="form-control" th:field="*{maSinhVien}" th:readonly="${!isNew}" required/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mã học phần *</label>
+                        <input type="text" class="form-control" th:field="*{maHocPhan}" th:readonly="${!isNew}" required/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mã giảng viên</label>
+                        <input type="text" class="form-control" th:field="*{maGiangVien}"/>
+                    </div>
+                    <div class="col-md-8">
+                        <label class="form-label">Tên học phần *</label>
+                        <input type="text" class="form-control" th:field="*{tenHocPhan}" required/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Tín chỉ *</label>
+                        <input type="number" class="form-control" th:field="*{soTinChi}" required/>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Điểm tổng kết</label>
+                        <input type="number" step="0.1" min="0" max="10" class="form-control" th:field="*{diemTongKet}"/>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Số lần thi</label>
+                        <input type="number" class="form-control" th:field="*{soLanThi}"/>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Loại học phần</label>
+                        <select class="form-select" th:field="*{loaiHocPhan}">
+                            <option value="">-- Chọn --</option>
+                            <option value="HOC_PHAN_BAT_BUOC_NGANH">Bắt buộc ngành</option>
+                            <option value="HOC_PHAN_TU_CHON">Tự chọn</option>
+                            <option value="HOC_PHAN_DAI_CUONG">Đại cương</option>
+                            <option value="HOC_PHAN_CO_SO">Cơ sở ngành</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Khoá</label>
+                        <input type="text" class="form-control" th:field="*{khoa}" placeholder="K33"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tiên quyết</label>
+                        <input type="text" class="form-control" th:field="*{tienQuyet}" placeholder="CS121, MA120..."/>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Chuyên ngành</label>
+                        <input type="text" class="form-control" th:field="*{chuyenNganhId}" placeholder="TA, TT, TI..."/>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Lưu</button>
+                    <a th:href="@{/admin/bangdiem(msv=${bangDiem.maSinhVien})}" class="btn btn-secondary ms-2">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

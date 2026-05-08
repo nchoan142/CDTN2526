@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "9372a92b-0fe7-43f9-bdb2-a4ccfbd15cdb",
+		"name": "N07.Portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42415745"
+	},
+	"item": [
+		{
+			"name": "LogIn",
+			"item": [
+				{
+					"name": "getOTP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dangnhap/CTI061",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dangnhap",
+								"CTI061"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BangDiem",
+			"item": [
+				{
+					"name": "KyHoc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tenVietTat\": \"Học\",\r\n  \"tenDayDu\": \"Chương trình học\",\r\n  \"hinhAnh\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s\",\r\n  \"link\": \"http://101.99.23.5/api/chuong-trinh-hoc\",\r\n  \"maQuanTri\": \"100473\",\r\n  \"mo\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/ky",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ky"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BangDiem",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "SinhVien",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "CVHT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/covanhoctap/2526K1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"covanhoctap",
+								"2526K1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DanhMuc",
+			"item": []
+		},
+		{
+			"name": "getOTP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/dangnhap/CTI061",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dangnhap",
+						"CTI061"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tenVietTat\": \"CVHT\",\r\n  \"tenDayDu\": \"Thông tin Cố vấn học tập\",\r\n  \"linkAnh\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s\",\r\n  \"linkTruyCap\": \"http://101.99.23.5/api/v1/covanhoctap/2526K1\",\r\n  \"nguoiQuanLy\":\"CTI061\",\r\n  \"dangDung\": 1,\r\n  \"danhMucCha\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/danh-muc",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"danh-muc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/danh-muc",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"danh-muc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tenVietTat\": \"Học\",\r\n  \"tenDayDu\": \"Chương trình học\",\r\n  \"hinhAnh\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s\",\r\n  \"link\": \"http://101.99.23.5/api/chuong-trinh-hoc\",\r\n  \"maQuanTri\": \"100473\",\r\n  \"mo\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/danh-muc/3",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"danh-muc",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

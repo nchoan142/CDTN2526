@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SV CNTT</string>
+    <string name="app_full_name">Tra Cứu Thông Tin\nSinh Viên Khoa CNTT</string>
+    <string name="app_slogan">Tiện ích dành cho sinh viên</string>
+
+    <!-- Login -->
+    <string name="login_title">Đăng Nhập</string>
+    <string name="login_subtitle">Chào mừng bạn quay trở lại!</string>
+    <string name="hint_msv">Mã số sinh viên</string>
+    <string name="hint_password">Mật khẩu</string>
+    <string name="btn_login">ĐĂNG NHẬP</string>
+    <string name="no_account">Chưa có tài khoản?</string>
+    <string name="register_link">Đăng ký ngay</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+
+    <!-- Register -->
+    <string name="register_title">Đăng Ký</string>
+    <string name="register_subtitle">Tạo tài khoản mới để bắt đầu</string>
+    <string name="hint_email">Email sinh viên</string>
+    <string name="hint_fullname">Họ và tên</string>
+    <string name="btn_register">ĐĂNG KÝ</string>
+    <string name="has_account">Đã có tài khoản?</string>
+    <string name="login_link">Đăng nhập</string>
+    <string name="register_note">Mật khẩu sẽ được gửi về Email của bạn</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Trang Chủ</string>
+    <string name="dashboard_greeting">Xin chào,</string>
+    <string name="dashboard_subtitle">Bạn muốn tra cứu gì hôm nay?</string>
+
+    <!-- Menu items -->
+    <string name="menu_tkb">Thời Khoá Biểu</string>
+    <string name="menu_bangdiem">Bảng Điểm</string>
+    <string name="menu_khoa">Khoa CNTT</string>
+    <string name="menu_phongdaotao">Phòng Đào Tạo</string>
+    <string name="menu_truong">Trường ĐHTL</string>
+    <string name="menu_thongtin">Thông Tin Khác</string>
+    <string name="menu_hoidap">Hỏi / Đáp</string>
+    <string name="menu_profile">Thông Tin Cá Nhân</string>
+
+    <!-- General -->
+    <string name="btn_back">Quay lại</string>
+    <string name="btn_logout">Đăng xuất</string>
+    <string name="loading">Đang tải...</string>
+    <string name="error_empty_msv">Vui lòng nhập mã sinh viên</string>
+    <string name="error_empty_email">Vui lòng nhập email</string>
+    <string name="error_empty_password">Vui lòng nhập mật khẩu</string>
+    <string name="error_invalid_email">Email không hợp lệ</string>
+    <string name="register_success">Đăng ký thành công! Mật khẩu đã được gửi về email của bạn.</string>
+    <string name="login_success">Đăng nhập thành công!</string>
+    <string name="page_under_construction">Tính năng đang được phát triển</string>
+</resources>

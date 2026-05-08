@@ -1,0 +1,83 @@
+====================================================
+  TÀI KHOẢN HỆ THỐNG SINH VIÊN CNTT
+====================================================
+
+----------------------------------------------------
+  BACKEND SPRING BOOT
+----------------------------------------------------
+  Port     : 8085
+  Database : MySQL - sinhviencntt
+  DB User  : root
+  DB Pass  : root
+
+----------------------------------------------------
+  ADMIN WEB (Quản trị)
+----------------------------------------------------
+  URL      : http://localhost:8085/login
+  Username : admin
+  Password : admin123
+
+----------------------------------------------------
+  TÀI KHOẢN SINH VIÊN (App Android)
+----------------------------------------------------
+  Lần đầu đăng nhập: password = mã sinh viên
+
+  MSV       | Password    | Tên
+  ----------|-------------|---------------------------
+  A38200    | A38200      | TRỊNH HOÀNG ĐĂNG
+  A40405    | A40405      | BÙI HỮU HUẤN
+  A38843    | A38843      | NGÔ ĐỨC PHÚ
+  A28198    | A28198      | LƯƠNG GIA HUY
+  A38146    | A38146      | NGUYỄN MINH HIẾU
+  A40587    | A40587      | NGUYỄN THẾ QUÂN
+  A40547    | A40547      | NGUYỄN VIỆT HÙNG
+  A37892    | A37892      | NGUYỄN QUỲNH ANH
+  A40791    | A40791      | ĐẶNG ANH TUẤN
+  A40502    | A40502      | NGUYỄN DUY KHÁNH
+
+  * Tổng: 1921 sinh viên trong hệ thống
+  * Sau khi đăng ký qua app, password sẽ thay đổi
+
+----------------------------------------------------
+  API ENDPOINTS
+----------------------------------------------------
+  Base URL : http://localhost:8085
+
+  Auth:
+    POST /api/auth/login          - Đăng nhập
+    POST /api/auth/register       - Đăng ký
+
+  Sinh viên:
+    GET /api/v1/sinhvien          - Danh sách SV
+    GET /api/v1/sinhvien/{msv}    - Thông tin SV
+
+  Bảng điểm:
+    GET /api/v1/bangdiem/{msv}    - Bảng điểm SV
+
+  Thời khoá biểu:
+    GET /api/v1/tkb/{msv}         - TKB sinh viên
+
+  Kỳ học:
+    GET /api/v1/ky                - Danh sách kỳ
+    GET /api/v1/ky/hientai        - Kỳ hiện tại
+
+  Giảng viên:
+    GET /api/v1/giangvien         - Danh sách GV
+
+  Cố vấn học tập:
+    GET /api/v1/covanhoctap/{maKy} - CVHT theo kỳ
+
+  Biểu mẫu:
+    GET /api/v1/bieumau           - Danh sách biểu mẫu
+
+  Thông báo:
+    GET /api/v1/thongbao          - Danh sách thông báo
+
+  Hỏi đáp:
+    GET  /api/v1/hoidap           - Tất cả câu hỏi
+    POST /api/v1/hoidap           - Gửi câu hỏi mới
+
+  Danh mục:
+    GET /api/v1/danhmuc           - Danh mục chức năng
+
+====================================================

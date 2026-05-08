@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main">
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_gradient_header">
+
+        <View android:layout_width="140dp" android:layout_height="140dp"
+            android:layout_gravity="end|top" android:layout_marginEnd="-30dp"
+            android:layout_marginTop="-30dp" android:background="@drawable/bg_splash_circle"
+            android:alpha="0.12" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp" android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView android:id="@+id/btn_back" android:layout_width="48dp"
+                android:layout_height="48dp" android:padding="12dp"
+                android:src="@drawable/ic_arrow_back" android:contentDescription="Back"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="8dp" android:text="Hỏi / Đáp"
+                android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_below="@id/header" android:layout_marginTop="-24dp"
+        android:clipToPadding="false">
+
+        <LinearLayout android:id="@+id/hoidap_container"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="16dp"
+            android:paddingEnd="16dp" android:paddingBottom="80dp">
+
+            <!-- Q&A 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" app:cardCornerRadius="18dp"
+                app:cardElevation="4dp" app:cardBackgroundColor="@color/bg_card">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="18dp">
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:gravity="center_vertical" android:layout_marginBottom="8dp">
+
+                        <TextView android:layout_width="24dp" android:layout_height="24dp"
+                            android:background="@drawable/bg_qa_badge_q" android:gravity="center"
+                            android:text="Q" android:textColor="#FFFFFF" android:textSize="12sp"
+                            android:textStyle="bold" android:layout_marginEnd="8dp" />
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Sinh viên Trần Minh" android:textColor="@color/text_hint"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Làm sao để đăng ký học phần bổ sung sau khi hết hạn đăng ký?"
+                        android:textColor="@color/text_primary" android:textSize="14sp"
+                        android:textStyle="bold" android:layout_marginBottom="10dp" />
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:gravity="center_vertical" android:layout_marginBottom="6dp">
+
+                        <TextView android:layout_width="24dp" android:layout_height="24dp"
+                            android:background="@drawable/bg_qa_badge_a" android:gravity="center"
+                            android:text="A" android:textColor="#FFFFFF" android:textSize="12sp"
+                            android:textStyle="bold" android:layout_marginEnd="8dp" />
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Phòng Đào Tạo" android:textColor="@color/accent"
+                            android:textSize="11sp" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Sinh viên mang thẻ SV đến Phòng Đào tạo (P.101, nhà A1) vào giờ tiếp SV để làm đơn đăng ký bổ sung. Phí bổ sung: 50.000đ/học phần."
+                        android:textColor="@color/text_secondary" android:textSize="13sp"
+                        android:lineSpacingExtra="3dp" android:layout_marginStart="32dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Q&A 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" app:cardCornerRadius="18dp"
+                app:cardElevation="4dp" app:cardBackgroundColor="@color/bg_card">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="18dp">
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:gravity="center_vertical" android:layout_marginBottom="8dp">
+
+                        <TextView android:layout_width="24dp" android:layout_height="24dp"
+                            android:background="@drawable/bg_qa_badge_q" android:gravity="center"
+                            android:text="Q" android:textColor="#FFFFFF" android:textSize="12sp"
+                            android:textStyle="bold" android:layout_marginEnd="8dp" />
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Sinh viên Lê Hương" android:textColor="@color/text_hint"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Điều kiện để được xét học bổng khuyến khích là gì?"
+                        android:textColor="@color/text_primary" android:textSize="14sp"
+                        android:textStyle="bold" android:layout_marginBottom="10dp" />
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:gravity="center_vertical" android:layout_marginBottom="6dp">
+
+                        <TextView android:layout_width="24dp" android:layout_height="24dp"
+                            android:background="@drawable/bg_qa_badge_a" android:gravity="center"
+                            android:text="A" android:textColor="#FFFFFF" android:textSize="12sp"
+                            android:textStyle="bold" android:layout_marginEnd="8dp" />
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Khoa CNTT" android:textColor="@color/accent"
+                            android:textSize="11sp" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="GPA từ 3.2 trở lên, không có môn F, không vi phạm kỷ luật. Hồ sơ nộp tại VP Khoa trước ngày 30/09 hàng năm."
+                        android:textColor="@color/text_secondary" android:textSize="13sp"
+                        android:lineSpacingExtra="3dp" android:layout_marginStart="32dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Q&A 3 - Unanswered -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" app:cardCornerRadius="18dp"
+                app:cardElevation="4dp" app:cardBackgroundColor="@color/bg_card">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="18dp">
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:gravity="center_vertical" android:layout_marginBottom="8dp">
+
+                        <TextView android:layout_width="24dp" android:layout_height="24dp"
+                            android:background="@drawable/bg_qa_badge_q" android:gravity="center"
+                            android:text="Q" android:textColor="#FFFFFF" android:textSize="12sp"
+                            android:textStyle="bold" android:layout_marginEnd="8dp" />
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Sinh viên Phạm Đức" android:textColor="@color/text_hint"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Khi nào trường mở đợt thực tập doanh nghiệp cho sinh viên năm 3?"
+                        android:textColor="@color/text_primary" android:textSize="14sp"
+                        android:textStyle="bold" android:layout_marginBottom="8dp" />
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Chờ phản hồi..."
+                        android:textColor="@color/text_hint" android:textSize="12sp"
+                        android:fontStyle="italic" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- FAB: Ask question -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_ask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Đặt câu hỏi"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_qa"
+        app:iconTint="#FFFFFF"
+        app:backgroundTint="@color/accent"
+        app:cornerRadius="28dp"
+        app:elevation="8dp" />
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Quản lý Kỳ học')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: sidebar}"></nav>
+<div class="main-content">
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h2><i class="bi bi-calendar3"></i> Quản lý Kỳ học</h2>
+        <a href="/admin/kyhoc/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
+    </div>
+    <div th:replace="~{fragments/layout :: alert}"></div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead><tr><th>#</th><th>Mã kỳ</th><th>Tên kỳ</th><th>Năm học</th><th>Bắt đầu</th><th>Kết thúc</th><th>Mặc định</th><th>Thao tác</th></tr></thead>
+                    <tbody>
+                        <tr th:each="ky, i : ${list}">
+                            <td th:text="${i.index + 1}"></td>
+                            <td><span class="badge bg-warning text-dark" th:text="${ky.maKy}"></span></td>
+                            <td th:text="${ky.tenKy}"></td>
+                            <td th:text="${ky.maNam}"></td>
+                            <td th:text="${ky.batDauKyHoc}"></td>
+                            <td th:text="${ky.ketThucKyHoc}"></td>
+                            <td>
+                                <span th:if="${ky.macDinh == 1}" class="badge bg-success">Hiện tại</span>
+                                <a th:if="${ky.macDinh != 1}" th:href="@{/admin/kyhoc/macdinh/{id}(id=${ky.id})}" class="btn btn-sm btn-outline-success btn-action">Đặt mặc định</a>
+                            </td>
+                            <td>
+                                <a th:href="@{/admin/kyhoc/edit/{id}(id=${ky.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>
+                                <a th:href="@{/admin/kyhoc/delete/{id}(id=${ky.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Quản lý Sinh viên')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: sidebar}"></nav>
+<div class="main-content">
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h2><i class="bi bi-people"></i> Quản lý Sinh viên</h2>
+        <a href="/admin/sinhvien/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
+    </div>
+    <div th:replace="~{fragments/layout :: alert}"></div>
+    <div class="card border-0 shadow-sm mb-3">
+        <div class="card-body">
+            <form method="get" class="row g-2">
+                <div class="col-md-8">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm theo tên sinh viên..." th:value="${search}"/>
+                </div>
+                <div class="col-md-2"><button class="btn btn-primary w-100"><i class="bi bi-search"></i> Tìm</button></div>
+                <div class="col-md-2"><a href="/admin/sinhvien" class="btn btn-outline-secondary w-100">Xoá lọc</a></div>
+            </form>
+        </div>
+    </div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr><th>#</th><th>Mã SV</th><th>Họ tên</th><th>Lớp CN</th><th>Ngành</th><th>Khoá</th><th>Email</th><th>SĐT</th><th>Thao tác</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="sv, i : ${list}">
+                            <td th:text="${i.index + 1}"></td>
+                            <td><span class="badge bg-primary" th:text="${sv.maSinhVien}"></span></td>
+                            <td th:text="${sv.ten}"></td>
+                            <td th:text="${sv.lopChuyenNganh}"></td>
+                            <td th:text="${sv.nganh}"></td>
+                            <td th:text="${sv.khoa}"></td>
+                            <td th:text="${sv.email1}"></td>
+                            <td th:text="${sv.dienThoai1}"></td>
+                            <td>
+                                <a th:href="@{/admin/sinhvien/edit/{id}(id=${sv.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>
+                                <a th:href="@{/admin/sinhvien/delete/{id}(id=${sv.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(list)}"><td colspan="9" class="text-center text-muted py-4">Không có dữ liệu</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
