@@ -2,7 +2,6 @@ package com.conghoan.sinhviencntt.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,13 +58,10 @@ public class HoiDapActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     displayHoiDap(response.body());
                 }
-                // Nếu API rỗng hoặc lỗi, giữ mock data XML
             }
 
             @Override
-            public void onFailure(Call<List<HoiDapModel>> call, Throwable t) {
-                // Giữ mock data XML
-            }
+            public void onFailure(Call<List<HoiDapModel>> call, Throwable t) {}
         });
     }
 
@@ -205,7 +201,7 @@ public class HoiDapActivity extends AppCompatActivity {
         body.put("tenSinhVien", ten);
         body.put("cauHoi", cauHoi);
 
-        ApiClient.getApiService(this).guiCauHoi(body).enqueue(new Callback<ApiResponse<String>>() {
+        ApiClient.getApiService(this).sendQuestion(body).enqueue(new Callback<ApiResponse<String>>() {
             @Override
             public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 0) {

@@ -27,6 +27,7 @@ import retrofit2.Response;
 public class KhoaCNTTActivity extends AppCompatActivity {
 
     private LinearLayout teacherContainer;
+    private TextView tvDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +48,10 @@ public class KhoaCNTTActivity extends AppCompatActivity {
     }
 
     private void setupContacts() {
-        setupContactRow(R.id.contact_phone, R.drawable.ic_info, "Điện thoại", "(024) 3856 XXXX", R.color.card_phongdaotao);
+        setupContactRow(R.id.contact_phone, R.drawable.ic_info, "Điện thoại", "0964930762", R.color.card_phongdaotao);
         setupContactRow(R.id.contact_email, R.drawable.ic_email, "Email", "cntt@tlu.edu.vn", R.color.card_tkb);
-        setupContactRow(R.id.contact_address, R.drawable.ic_university, "Địa chỉ", "Tầng 3, Nhà A3, 175 Tây Sơn", R.color.card_khoa);
+        setupContactRow(R.id.contact_address, R.drawable.ic_university, "Địa chỉ", "Tầng 2, Đường Nghiêm Xuân Yêm, Phường Định Công, Thành phố Hà Nội", R.color.card_khoa);
+        
     }
 
     private void loadSinhVienCount() {
@@ -78,15 +80,30 @@ public class KhoaCNTTActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     displayGiangVien(response.body());
                 } else {
-                    setupMockTeachers();
+                    showEmptyDataMessage();
                 }
             }
 
             @Override
             public void onFailure(Call<List<GiangVienModel>> call, Throwable t) {
-                setupMockTeachers();
+                showEmptyDataMessage();
             }
         });
+    }
+
+    private void showEmptyDataMessage() {
+        if (teacherContainer == null) return;
+
+        teacherContainer.removeAllViews();
+
+        TextView tvEmpty = new TextView(this);
+        tvEmpty.setText("Không có dữ liệu bảng điểm");
+        tvEmpty.setTextSize(16);
+        tvEmpty.setPadding(0, 50, 0, 50);
+        tvEmpty.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tvEmpty.setTextColor(getResources().getColor(android.R.color.darker_gray));
+
+        teacherContainer.addView(tvEmpty);
     }
 
     private void displayGiangVien(List<GiangVienModel> list) {
@@ -105,11 +122,11 @@ public class KhoaCNTTActivity extends AppCompatActivity {
             View row = getLayoutInflater().inflate(R.layout.item_teacher_row, teacherContainer, false);
 
             ((TextView) row.findViewById(R.id.tv_teacher_name)).setText(gv.getFullName());
-            String role = gv.getDonVi() != null ? gv.getDonVi() : "Giảng viên";
+            String gvInfo = gv.getDonVi() != null ? gv.getDonVi() : "Giảng viên";
             if (gv.getEmail1() != null && !gv.getEmail1().isEmpty()) {
-                role += " | " + gv.getEmail1();
+                gvInfo += " | " + gv.getEmail1() + " | " + gv.getDienThoai();
             }
-            ((TextView) row.findViewById(R.id.tv_teacher_role)).setText(role);
+            ((TextView) row.findViewById(R.id.tv_teacher_role)).setText(gvInfo);
 
             GradientDrawable bg = new GradientDrawable();
             bg.setShape(GradientDrawable.OVAL);
@@ -118,10 +135,6 @@ public class KhoaCNTTActivity extends AppCompatActivity {
 
             teacherContainer.addView(row);
         }
-    }
-
-    private void setupMockTeachers() {
-        // Fallback
     }
 
     private void loadTinTuc() {

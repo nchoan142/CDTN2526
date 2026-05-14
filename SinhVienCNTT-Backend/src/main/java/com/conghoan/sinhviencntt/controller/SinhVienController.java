@@ -45,6 +45,6 @@ public class SinhVienController {
 
     @GetMapping("/search")
     public ResponseEntity<?> search(@RequestParam String maSinhVien, @RequestParam String ten) {
-        return ResponseEntity.ok(repo.findByTenContainingIgnoreCaseOrMaSinhVienContainingIgnoreCase(maSinhVien, ten));
+        return ResponseEntity.ok(repo.findByMaSinhVienContainingIgnoreCase(maSinhVien));
     }
 }

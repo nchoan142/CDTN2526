@@ -13,10 +13,23 @@
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
-                    <thead><tr><th>#</th><th>Tên viết tắt</th><th>Tên đầy đủ</th><th>Loại</th><th>Mã MH / Link</th><th>Người QL</th><th>Đang dùng</th><th>Thao tác</th></tr></thead>
+                    <thead>
+                        <tr>
+<!--                            <th>#</th>-->
+                            <th>STT</th>
+                            <th>Tên viết tắt</th>
+                            <th>Tên đầy đủ</th>
+                            <th>Loại</th>
+                            <th>Mã MH / Link</th>
+                            <th>Người QL</th>
+                            <th>Đang dùng</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr th:each="dm, i : ${list}">
-                            <td th:text="${i.index + 1}"></td>
+<!--                            <td th:text="${i.index + 1}"></td>-->
+                            <td th:text="${dm.stt}"></td>
                             <td><span class="badge bg-secondary" th:text="${dm.tenVietTat}"></span></td>
                             <td th:text="${dm.tenDayDu}"></td>
                             <td>

@@ -13,7 +13,17 @@
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
-                    <thead><tr><th>#</th><th>Tiêu đề</th><th>Đối tượng</th><th>Người gửi</th><th>Ngày gửi</th><th>Ghim</th><th>Thao tác</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tiêu đề</th>
+                            <th>Đối tượng</th>
+                            <th>Người gửi</th>
+                            <th>Ngày gửi</th>
+                            <th>Ghim</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr th:each="tb, i : ${list}">
                             <td th:text="${i.index + 1}"></td>

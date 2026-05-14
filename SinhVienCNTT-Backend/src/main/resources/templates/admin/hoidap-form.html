@@ -16,7 +16,11 @@
         <div class="card-body">
             <form th:action="@{/admin/hoidap/traloi}" method="post" th:object="${hoiDap}">
                 <input type="hidden" th:field="*{id}"/>
-                <div class="mb-3"><label class="form-label">Người trả lời</label><input type="text" class="form-control" th:field="*{nguoiTraLoi}" placeholder="Tên giảng viên/admin"/></div>
+<!--                <div class="mb-3"><label class="form-label">Người trả lời</label><input type="text" class="form-control" th:field="*{nguoiTraLoi}" placeholder="Tên giảng viên/admin"/></div>-->
+                <div class="mb-3">
+                    <label class="form-label">Người trả lời</label>
+                    <input type="text" class="form-control" name="nguoiTraLoi" id="nguoiTraLoi" th:value="${#strings.isEmpty(hoiDap.nguoiTraLoi) ? (#authentication.name + ' - ' + currentUserName) : hoiDap.nguoiTraLoi}" placeholder="Mã và tên giảng viên..."/>
+                </div>
                 <div class="mb-3"><label class="form-label">Câu trả lời *</label><textarea class="form-control" th:field="*{cauTraLoi}" rows="5" required></textarea></div>
                 <button type="submit" class="btn btn-success"><i class="bi bi-send"></i> Trả lời & Duyệt</button>
                 <a href="/admin/hoidap" class="btn btn-secondary ms-2">Huỷ</a>

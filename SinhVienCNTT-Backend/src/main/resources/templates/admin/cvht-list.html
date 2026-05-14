@@ -42,7 +42,16 @@
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
-                    <thead><tr><th>#</th><th>Mã GV</th><th>Mã lớp</th><th>Mã kỳ</th><th>Ghi chú</th><th>Thao tác</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã GV</th>
+                            <th>Mã lớp</th>
+                            <th>Mã kỳ</th>
+                            <th>Ghi chú</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr th:each="cv, i : ${list}">
                             <td th:text="${i.index + 1}"></td>

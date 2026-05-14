@@ -1,6 +1,7 @@
 package com.conghoan.sinhviencntt.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.conghoan.sinhviencntt.R;
+import com.conghoan.sinhviencntt.activity.WebViewActivity;
 import com.conghoan.sinhviencntt.model.DashboardItem;
 
 import java.util.List;
@@ -87,21 +89,22 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
         holder.itemView.setOnClickListener(v -> {
             String loai = item.getLoai();
             if ("BUILTIN".equalsIgnoreCase(loai)) {
-                android.content.Intent i = com.conghoan.sinhviencntt.util.ScreenRouter.intentFor(context, item.getMaManHinh());
-                if (i != null) {
-                    i.putExtra("title", item.getTitle());
-                    context.startActivity(i);
+                android.content.Intent intent = com.conghoan.sinhviencntt.util.ScreenRouter.intentFor(context, item.getMaManHinh());
+                if (intent != null) {
+                    intent.putExtra("title", item.getTitle());
+                    context.startActivity(intent);
                 } else {
                     android.widget.Toast.makeText(context, "Tính năng chưa khả dụng", android.widget.Toast.LENGTH_SHORT).show();
                 }
             } else if ("WEBVIEW".equalsIgnoreCase(loai)) {
                 String url = item.getLinkTruyCap();
                 if (url != null && !url.isEmpty()) {
-                    android.content.Intent i = new android.content.Intent(context,
-                            com.conghoan.sinhviencntt.activity.WebViewActivity.class);
-                    i.putExtra(com.conghoan.sinhviencntt.activity.WebViewActivity.EXTRA_URL, url);
-                    i.putExtra(com.conghoan.sinhviencntt.activity.WebViewActivity.EXTRA_TITLE, item.getTitle());
-                    context.startActivity(i);
+                    Intent intent = new Intent(context, WebViewActivity.class);
+//                    android.content.Intent intent = new android.content.Intent(context,
+//                            com.conghoan.sinhviencntt.activity.WebViewActivity.class);
+                    intent.putExtra(com.conghoan.sinhviencntt.activity.WebViewActivity.EXTRA_URL, url);
+                    intent.putExtra(com.conghoan.sinhviencntt.activity.WebViewActivity.EXTRA_TITLE, item.getTitle());
+                    context.startActivity(intent);
                 } else {
                     android.widget.Toast.makeText(context, "Danh mục chưa cấu hình link", android.widget.Toast.LENGTH_SHORT).show();
                 }

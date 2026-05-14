@@ -40,13 +40,17 @@ public class WebViewActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.progress);
         webView = findViewById(R.id.webview);
-        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true); // Cho phép chạy js trên web
         webView.getSettings().setDomStorageEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
+            // Hiển thị thanh progress (load trang web)
+            // khi trang web đang khởi động
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 progress.setVisibility(View.VISIBLE);
             }
+
+            // Ẩn thanh progress khi tải xong trang web
             @Override
             public void onPageFinished(WebView view, String url) {
                 progress.setVisibility(View.GONE);

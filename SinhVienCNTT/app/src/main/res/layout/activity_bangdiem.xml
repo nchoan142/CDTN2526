@@ -56,13 +56,13 @@
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-medium" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kết quả học tập các học kỳ"
-                    android:textColor="#90FFFFFF"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Kết quả học tập các học kỳ"-->
+<!--                    android:textColor="#90FFFFFF"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:layout_marginTop="2dp" />-->
 
             </LinearLayout>
 
@@ -87,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:padding="20dp">
 
             <!-- GPA Circle -->
@@ -111,18 +112,18 @@
                         android:id="@+id/tv_gpa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3.24"
+                        android:text="7.0"
                         android:textColor="@color/accent"
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:fontFamily="sans-serif-black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="/ 4.0"
-                        android:textColor="@color/text_hint"
-                        android:textSize="10sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="/ 4.0"-->
+<!--                        android:textColor="@color/text_hint"-->
+<!--                        android:textSize="10sp" />-->
 
                 </LinearLayout>
 
@@ -139,7 +140,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="GPA Tích luỹ"
+                    android:text="Điểm Tích luỹ"
                     android:textColor="@color/text_primary"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -160,8 +161,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tín chỉ"
-                            android:textColor="@color/text_hint"
+                            android:text="Tín chỉ tích lũy"
+                            android:textColor="@color/text_primary"
                             android:textSize="10sp" />
 
                         <TextView
@@ -175,28 +176,28 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Xếp loại"
-                            android:textColor="@color/text_hint"
-                            android:textSize="10sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Xếp loại"-->
+<!--                            android:textColor="@color/text_hint"-->
+<!--                            android:textSize="10sp" />-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Khá"
-                            android:textColor="@color/accent"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Khá"-->
+<!--                            android:textColor="@color/accent"-->
+<!--                            android:textSize="14sp"-->
+<!--                            android:textStyle="bold" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
                 </LinearLayout>
 
@@ -212,10 +213,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/card_gpa"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="8dp"
-        android:text="Học kỳ 2 (2025-2026)"
+        android:text="Tất cả các môn"
         android:textColor="@color/text_primary"
         android:textSize="15sp"
         android:textStyle="bold"

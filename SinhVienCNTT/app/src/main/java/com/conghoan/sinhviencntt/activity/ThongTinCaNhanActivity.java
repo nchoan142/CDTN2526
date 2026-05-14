@@ -46,6 +46,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("SinhVienCNTT", MODE_PRIVATE);
         String msv = prefs.getString("msv", "");
 
+        // Lấy thông tin sinh viên theo mã sinh viên từ database
         ApiClient.getApiService(this).getSinhVien(msv).enqueue(new Callback<Map<String, Object>>() {
             @Override
             public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
@@ -63,6 +64,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         });
     }
 
+    // Hiển thị thông tin lên View
     private void displayInfo(Map<String, Object> data) {
         tvLoading.setVisibility(View.GONE);
 
@@ -96,8 +98,9 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         }
     }
 
+    // Lấy mã giảng viên, và tên của cố vấn học tập từ database
     private void loadCvht(String msv) {
-        ApiClient.getApiService(this).getCvhtOfSinhVien(msv).enqueue(new Callback<Map<String, String>>() {
+        ApiClient.getApiService(this).getCVHTOfSinhVien(msv).enqueue(new Callback<Map<String, String>>() {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
@@ -118,6 +121,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         });
     }
 
+    // add view vào container
     private void addInfoRow(String label, String value) {
         if (value == null || value.isEmpty() || value.equals("null")) return;
 

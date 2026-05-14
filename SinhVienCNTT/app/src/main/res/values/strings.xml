@@ -7,7 +7,7 @@
     <!-- Login -->
     <string name="login_title">Đăng Nhập</string>
     <string name="login_subtitle">Chào mừng bạn quay trở lại!</string>
-    <string name="hint_msv">Mã số sinh viên</string>
+    <string name="hint_msv">Mã sinh viên</string>
     <string name="hint_password">Mật khẩu</string>
     <string name="btn_login">ĐĂNG NHẬP</string>
     <string name="no_account">Chưa có tài khoản?</string>

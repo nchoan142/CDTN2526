@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/bg_main"
+    android:fillViewport="true"
     android:overScrollMode="never">
 
     <RelativeLayout
@@ -24,8 +24,8 @@
                 android:layout_gravity="end|top"
                 android:layout_marginTop="-30dp"
                 android:layout_marginEnd="-30dp"
-                android:background="@drawable/bg_splash_circle"
-                android:alpha="0.15" />
+                android:alpha="0.15"
+                android:background="@drawable/bg_splash_circle" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -49,46 +49,45 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/logo_tlu"
+                        android:contentDescription="Logo"
                         android:scaleType="fitCenter"
-                        android:contentDescription="Logo" />
+                        android:src="@drawable/logo_tlu" />
                 </FrameLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
                     android:text="@string/login_title"
                     android:textColor="#FFFFFF"
                     android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-black" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-light"
                     android:text="@string/login_subtitle"
                     android:textColor="#B0FFFFFF"
-                    android:textSize="14sp"
-                    android:fontFamily="sans-serif-light" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
         </FrameLayout>
 
         <!-- Login Form Card -->
-        <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
-            android:layout_marginTop="-40dp"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="-40dp"
             android:layout_marginEnd="24dp"
             android:elevation="8dp"
-            app:cardCornerRadius="24dp"
             app:cardBackgroundColor="@color/bg_card"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+            app:cardCornerRadius="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,30 +99,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.03"
                     android:text="Mã sinh viên"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-medium"
-                    android:letterSpacing="0.03"
-                    android:layout_marginBottom="8dp" />
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/bg_input"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:layout_marginBottom="20dp">
+                    android:paddingEnd="16dp">
 
                     <ImageView
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:src="@drawable/ic_msv"
                         android:layout_marginEnd="12dp"
-                        android:contentDescription="MSV icon" />
+                        android:contentDescription="MSV icon"
+                        android:src="@drawable/ic_msv" />
 
                     <EditText
                         android:id="@+id/edt_msv"
@@ -131,42 +130,42 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:hint="@string/hint_msv"
-                        android:textSize="15sp"
-                        android:textColor="@color/text_primary"
-                        android:textColorHint="@color/text_hint"
+                        android:importantForAutofill="no"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:importantForAutofill="no" />
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <!-- Password Input -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.03"
                     android:text="Mật khẩu"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-medium"
-                    android:letterSpacing="0.03"
-                    android:layout_marginBottom="8dp" />
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/bg_input"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:layout_marginBottom="12dp">
+                    android:paddingEnd="16dp">
 
                     <ImageView
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:src="@drawable/ic_lock"
                         android:layout_marginEnd="12dp"
-                        android:contentDescription="Lock icon" />
+                        android:contentDescription="Lock icon"
+                        android:src="@drawable/ic_lock" />
 
                     <EditText
                         android:id="@+id/edt_password"
@@ -174,32 +173,33 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:hint="@string/hint_password"
-                        android:textSize="15sp"
-                        android:textColor="@color/text_primary"
-                        android:textColorHint="@color/text_hint"
+                        android:importantForAutofill="no"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:importantForAutofill="no" />
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <!-- Login Button -->
                 <Button
                     android:id="@+id/btn_login"
                     style="@style/ButtonPrimary"
-                    android:text="@string/btn_login"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/btn_login" />
 
                 <!-- Tạo tài khoản -->
                 <TextView
                     android:id="@+id/btn_tao_tai_khoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:padding="8dp"
                     android:text="Chưa có tài khoản? Tạo tài khoản"
+                    android:textAlignment="center"
                     android:textColor="@color/accent"
                     android:textSize="14sp"
-                    android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
-                    android:padding="8dp" />
+                    android:visibility="gone" />
 
             </LinearLayout>
 

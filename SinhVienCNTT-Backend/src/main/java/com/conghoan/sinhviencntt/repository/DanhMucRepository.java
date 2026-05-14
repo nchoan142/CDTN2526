@@ -10,4 +10,6 @@ public interface DanhMucRepository extends JpaRepository<DanhMuc, Long> {
     List<DanhMuc> findByDanhMucCha(Long danhMucCha);
 
     List<DanhMuc> findByDangDungTrueAndDanhMucChaIsNullOrderBySttAsc();
+
+    List<DanhMuc> findAllByOrderBySttAsc();
 }

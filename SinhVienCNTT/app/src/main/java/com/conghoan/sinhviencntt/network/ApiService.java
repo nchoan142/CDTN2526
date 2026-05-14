@@ -51,7 +51,7 @@ public interface ApiService {
     Call<List<HoiDapModel>> getHoiDapByMsv(@Path("msv") String msv);
 
     @POST("api/v1/hoidap")
-    Call<ApiResponse<String>> guiCauHoi(@Body Map<String, String> body);
+    Call<ApiResponse<String>> sendQuestion(@Body Map<String, String> body);
 
     // Tin tuc khoa CNTT
     @GET("api/v1/tintuc")
@@ -59,7 +59,7 @@ public interface ApiService {
 
     // CVHT cua sinh vien
     @GET("api/v1/covanhoctap/sinhvien/{msv}")
-    Call<Map<String, String>> getCvhtOfSinhVien(@Path("msv") String msv);
+    Call<Map<String, String>> getCVHTOfSinhVien(@Path("msv") String msv);
 
     // Danh muc - dashboard động
     @GET("api/v1/danhmuc/active")

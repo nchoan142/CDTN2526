@@ -13,7 +13,7 @@
         <div class="card-body">
             <form method="get" class="row g-2">
                 <div class="col-md-8">
-                    <input type="text" name="search" class="form-control" placeholder="Tìm theo tên sinh viên..." th:value="${search}"/>
+                    <input type="text" name="search" class="form-control" placeholder="Tìm theo mã sinh viên..." th:value="${search}"/>
                 </div>
                 <div class="col-md-2"><button class="btn btn-primary w-100"><i class="bi bi-search"></i> Tìm</button></div>
                 <div class="col-md-2"><a href="/admin/sinhvien" class="btn btn-outline-secondary w-100">Xoá lọc</a></div>
@@ -25,7 +25,17 @@
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <thead>
-                        <tr><th>#</th><th>Mã SV</th><th>Họ tên</th><th>Lớp CN</th><th>Ngành</th><th>Khoá</th><th>Email</th><th>SĐT</th><th>Thao tác</th></tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã SV</th>
+                            <th>Họ tên</th>
+                            <th>Lớp CN</th>
+                            <th>Ngành</th>
+<!--                            <th>Khoá</th>-->
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Thao tác</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr th:each="sv, i : ${list}">
@@ -34,7 +44,7 @@
                             <td th:text="${sv.ten}"></td>
                             <td th:text="${sv.lopChuyenNganh}"></td>
                             <td th:text="${sv.nganh}"></td>
-                            <td th:text="${sv.khoa}"></td>
+<!--                            <td th:text="${sv.khoaNhapHoc}"></td>-->
                             <td th:text="${sv.email1}"></td>
                             <td th:text="${sv.dienThoai1}"></td>
                             <td>

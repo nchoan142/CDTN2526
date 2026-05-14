@@ -27,6 +27,10 @@
 <body>
 <nav th:fragment="sidebar" class="sidebar d-flex flex-column">
     <div class="brand"><i class="bi bi-mortarboard-fill"></i> SV CNTT Admin</div>
+    <div class="text-center py-3 border-bottom" style="border-color: rgba(255,255,255,0.1) !important; color: #fff;">
+        <i class="bi bi-person-circle" style="font-size: 2.5rem;"></i>
+        <div class="mt-2 fw-semibold" th:text="${#authentication.name}">Tên đăng nhập</div>
+    </div>
     <ul class="nav flex-column mt-2">
         <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'dashboard'} ? 'active'" href="/admin/dashboard"><i class="bi bi-speedometer2"></i>Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" th:classappend="${currentPage == 'sinhvien'} ? 'active'" href="/admin/sinhvien"><i class="bi bi-people"></i>Sinh viên</a></li>
@@ -50,6 +54,10 @@
 <div th:fragment="alert">
     <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
         <span th:text="${success}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${error}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 </div>

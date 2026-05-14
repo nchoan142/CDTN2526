@@ -22,11 +22,15 @@
                         <h3 class="mt-2 fw-bold" style="color: #1B2A4A;">SV CNTT Admin</h3>
                         <p class="text-muted">Đăng nhập quản trị hệ thống</p>
                     </div>
-                    <div th:if="${param.error}" class="alert alert-danger">Sai tài khoản hoặc mật khẩu!</div>
+<!--                    Thông báo lỗi đăng nhập-->
+                    <div th:if="${param.error}" class="alert alert-danger">Sai tên đăng nhập hoặc mật khẩu!</div>
+<!--                    Thông báo đăng xuất-->
                     <div th:if="${param.logout}" class="alert alert-info">Đã đăng xuất!</div>
+<!--                    Logic xử lý đăng nhập được viết trong file SecurityConfig -->
+<!--                    Nếu đăng nhập thành công sẽ chuyển tới trang dashboard.html-->
                     <form th:action="@{/login}" method="post">
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Tài khoản</label>
+                            <label class="form-label fw-semibold">Tên đăng nhập</label>
                             <input type="text" name="username" class="form-control form-control-lg" placeholder="admin" required autofocus/>
                         </div>
                         <div class="mb-4">

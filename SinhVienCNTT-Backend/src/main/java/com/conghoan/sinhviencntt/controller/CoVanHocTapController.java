@@ -43,12 +43,11 @@ public class CoVanHocTapController {
         return ResponseEntity.ok(repo.findByMaLop(maLop));
     }
 
-    /**
-     * Lấy thông tin CVHT của sinh viên theo MSV
-     * Flow: MSV → SinhVien.lopChuyenNganh → CoVanHocTap.maLop → GiangVien
-     */
+
+    // Lấy thông tin CVHT của sinh viên theo MSV
+    //Flow: MSV → SinhVien.lopChuyenNganh → CoVanHocTap.maLop → GiangVien
     @GetMapping("/sinhvien/{msv}")
-    public ResponseEntity<?> getCvhtOfSinhVien(@PathVariable String msv) {
+    public ResponseEntity<?> getCVHTOfSinhVien(@PathVariable String msv) {
         SinhVien sv = svRepo.findByMaSinhVien(msv).orElse(null);
         if (sv == null || sv.getLopChuyenNganh() == null) {
             return ResponseEntity.ok(Map.of());

@@ -2,14 +2,22 @@ package com.conghoan.sinhviencntt.controller.admin;
 
 import com.conghoan.sinhviencntt.entity.DanhMuc;
 import com.conghoan.sinhviencntt.repository.DanhMucRepository;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/admin/danhmuc")
 public class AdminDanhMucController {
+    // Xóa các ký tự khoảng trắng 2 đầu của chuỗi ở các ô input
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
 
     private final DanhMucRepository repo;
 
@@ -19,7 +27,7 @@ public class AdminDanhMucController {
 
     @GetMapping
     public String list(Model model) {
-        model.addAttribute("list", repo.findAll());
+        model.addAttribute("list", repo.findAllByOrderBySttAsc());
         return "admin/danhmuc-list";
     }
 

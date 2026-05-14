@@ -9,11 +9,34 @@
         <a href="/admin/giangvien/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
     </div>
     <div th:replace="~{fragments/layout :: alert}"></div>
+    <div class="card border-0 shadow-sm mb-3">
+        <div class="card-body">
+            <form method="get" class="row g-2">
+                <div class="col-md-8">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm theo mã giảng viên..." th:value="${search}"/>
+                </div>
+                <div class="col-md-2"><button class="btn btn-primary w-100"><i class="bi bi-search"></i> Tìm</button></div>
+                <div class="col-md-2"><a href="/admin/giangvien" class="btn btn-outline-secondary w-100">Xoá lọc</a></div>
+            </form>
+        </div>
+    </div>
     <div class="card border-0 shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
-                    <thead><tr><th>#</th><th>Mã GV</th><th>Họ tên</th><th>Học vị</th><th>Đơn vị</th><th>Email</th><th>SĐT</th><th>Vai trò</th><th>Thao tác</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã GV</th>
+                            <th>Họ tên</th>
+                            <th>Học vị</th>
+                            <th>Đơn vị</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Vai trò</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr th:each="gv, i : ${list}">
                             <td th:text="${i.index + 1}"></td>
@@ -34,6 +57,7 @@
                                 <a th:href="@{/admin/giangvien/delete/{id}(id=${gv.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
+                        <tr th:if="${#lists.isEmpty(list)}"><td colspan="9" class="text-center text-muted py-4">Không tìm thấy giảng viên nào</td></tr>
                     </tbody>
                 </table>
             </div>

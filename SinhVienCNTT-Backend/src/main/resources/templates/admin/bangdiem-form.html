@@ -4,7 +4,11 @@
 <body>
 <nav th:replace="~{fragments/layout :: sidebar}"></nav>
 <div class="main-content">
-    <div class="page-header"><h2><i class="bi bi-journal-check"></i> <span th:text="${isNew} ? 'Thêm mới Bảng điểm' : 'Cập nhật điểm'"></span></h2></div>
+    <div class="page-header"><h2><i class="bi bi-journal-check"></i> <span
+            th:text="${isNew} ? 'Thêm điểm học phần' : 'Cập nhật điểm'"></span></h2></div>
+
+    <div th:replace="~{fragments/layout :: alert}"></div>
+
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <form th:action="@{/admin/bangdiem/save}" method="post" th:object="${bangDiem}">
@@ -12,7 +16,7 @@
                 <div class="row g-3">
                     <div class="col-md-4">
                         <label class="form-label">Mã sinh viên *</label>
-                        <input type="text" class="form-control" th:field="*{maSinhVien}" th:readonly="${!isNew}" required/>
+                        <input type="text" class="form-control" th:field="*{maSinhVien}" readonly required/>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Mã học phần *</label>
@@ -44,7 +48,7 @@
                             <option value="">-- Chọn --</option>
                             <option value="HOC_PHAN_BAT_BUOC_NGANH">Bắt buộc ngành</option>
                             <option value="HOC_PHAN_TU_CHON">Tự chọn</option>
-                            <option value="HOC_PHAN_DAI_CUONG">Đại cương</option>
+                            <option value="HOC_PHAN_TU_DO">Tự do</option>
                             <option value="HOC_PHAN_CO_SO">Cơ sở ngành</option>
                         </select>
                     </div>

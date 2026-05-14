@@ -15,8 +15,8 @@
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-cuatoi" type="button">
-                    <i class="bi bi-person-check"></i> SV của tôi
-                    <span th:if="${cuaToi != null}" class="badge bg-primary ms-1" th:text="${#lists.size(cuaToi)}"></span>
+                    <i class="bi bi-person-check"></i> Sinh viên của tôi
+                    <span th:if="${listOfMe != null}" class="badge bg-primary ms-1" th:text="${#lists.size(listOfMe)}"></span>
                 </button>
             </li>
             <li class="nav-item">
@@ -35,7 +35,7 @@
                             <table class="table table-hover mb-0">
                                 <thead><tr><th>#</th><th>Sinh viên</th><th>Câu hỏi</th><th>Ngày hỏi</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
                                 <tbody>
-                                    <tr th:each="hd, i : ${cuaToi}">
+                                    <tr th:each="hd, i : ${listOfMe}">
                                         <td th:text="${i.index + 1}"></td>
                                         <td><span th:text="${hd.tenSinhVien}"></span><br/><small class="text-muted" th:text="${hd.maSinhVien}"></small></td>
                                         <td style="max-width:400px;" th:text="${#strings.abbreviate(hd.cauHoi, 100)}"></td>
@@ -50,7 +50,7 @@
                                             <a th:href="@{/admin/hoidap/delete/{id}(id=${hd.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
-                                    <tr th:if="${#lists.isEmpty(cuaToi)}">
+                                    <tr th:if="${#lists.isEmpty(listOfMe)}">
                                         <td colspan="6" class="text-center text-muted py-4">Chưa có câu hỏi từ sinh viên của bạn</td>
                                     </tr>
                                 </tbody>
@@ -65,7 +65,16 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-hover mb-0">
-                                <thead><tr><th>#</th><th>Sinh viên</th><th>Câu hỏi</th><th>Câu trả lời</th><th>Người trả lời</th><th>Trạng thái</th></tr></thead>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Sinh viên</th>
+                                        <th>Câu hỏi</th>
+                                        <th>Câu trả lời</th>
+                                        <th>Người trả lời</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr th:each="hd, i : ${list}">
                                         <td th:text="${i.index + 1}"></td>

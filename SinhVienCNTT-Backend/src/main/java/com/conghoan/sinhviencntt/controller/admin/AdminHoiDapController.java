@@ -3,7 +3,9 @@ package com.conghoan.sinhviencntt.controller.admin;
 import com.conghoan.sinhviencntt.entity.CoVanHocTap;
 import com.conghoan.sinhviencntt.entity.HoiDap;
 import com.conghoan.sinhviencntt.entity.SinhVien;
+import com.conghoan.sinhviencntt.entity.GiangVien;
 import com.conghoan.sinhviencntt.repository.CoVanHocTapRepository;
+import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import com.conghoan.sinhviencntt.repository.HoiDapRepository;
 import com.conghoan.sinhviencntt.repository.SinhVienRepository;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,12 +27,14 @@ public class AdminHoiDapController {
     private final HoiDapRepository repo;
     private final CoVanHocTapRepository cvhtRepo;
     private final SinhVienRepository svRepo;
+    private final GiangVienRepository giangVienRepo;
 
     public AdminHoiDapController(HoiDapRepository repo, CoVanHocTapRepository cvhtRepo,
-                                  SinhVienRepository svRepo) {
+                                  SinhVienRepository svRepo, GiangVienRepository giangVienRepo) {
         this.repo = repo;
         this.cvhtRepo = cvhtRepo;
         this.svRepo = svRepo;
+        this.giangVienRepo = giangVienRepo;
     }
 
     @GetMapping
@@ -39,15 +44,15 @@ public class AdminHoiDapController {
                 .anyMatch(a -> a.getAuthority().equals("ROLE_CVHT"));
 
         if (isCvht) {
-            // CVHT: tab "SV của tôi" + tab "Tất cả"
-            Set<String> msvCuaToi = getMsvCuaCvht(username);
-            List<HoiDap> cuaToi = msvCuaToi.isEmpty()
+            // tab "SV của tôi" + tab "Tất cả"
+            Set<String> svOfMe = getMsvOfCvht(username);
+            List<HoiDap> listOfMe = svOfMe.isEmpty()
                     ? List.of()
-                    : repo.findByMaSinhVienInOrderByNgayHoiDesc(msvCuaToi);
-            List<HoiDap> tatCa = repo.findAllByOrderByNgayHoiDesc();
+                    : repo.findByMaSinhVienInOrderByNgayHoiDesc(svOfMe);
+            List<HoiDap> listAll = repo.findAllByOrderByNgayHoiDesc();
 
-            model.addAttribute("cuaToi", cuaToi);
-            model.addAttribute("list", tatCa);
+            model.addAttribute("listOfMe", listOfMe);
+            model.addAttribute("list", listAll);
             model.addAttribute("isCvht", true);
             model.addAttribute("tenCvht", username);
         } else {
@@ -68,10 +73,16 @@ public class AdminHoiDapController {
     @GetMapping("/traloi/{id}")
     public String traLoiForm(@PathVariable Long id, Model model, Authentication auth) {
         HoiDap hd = repo.findById(id).orElseThrow();
-        // Tự động điền tên người trả lời = username đang login
-        if (hd.getNguoiTraLoi() == null || hd.getNguoiTraLoi().isEmpty()) {
-            hd.setNguoiTraLoi(auth.getName());
+        
+        // Lấy tên giảng viên từ Database
+        String currentUserName = "Admin";
+        Optional<GiangVien> optGv = giangVienRepo.findByMaGiangVien(auth.getName());
+        if (optGv.isPresent()) {
+            GiangVien gv = optGv.get();
+            currentUserName = gv.getTen();
         }
+        model.addAttribute("currentUserName", currentUserName);
+        
         model.addAttribute("hoiDap", hd);
         return "admin/hoidap-form";
     }
@@ -104,11 +115,9 @@ public class AdminHoiDapController {
         return "redirect:/admin/hoidap";
     }
 
-    /**
-     * Lấy danh sách MSV của sinh viên mà CVHT phụ trách
-     * Flow: maGiangVien → co_van_hoc_tap.maLop → sinh_vien.lopChuyenNganh
-     */
-    private Set<String> getMsvCuaCvht(String maGiangVien) {
+    // Lấy danh sách MSV của sinh viên mà CVHT phụ trách
+    // Flow: maGiangVien → co_van_hoc_tap.maLop → sinh_vien.lopChuyenNganh
+    private Set<String> getMsvOfCvht(String maGiangVien) {
         // Tìm các lớp mà CVHT phụ trách
         List<CoVanHocTap> assignments = cvhtRepo.findByMaGiangVien(maGiangVien);
         Set<String> maLops = assignments.stream()

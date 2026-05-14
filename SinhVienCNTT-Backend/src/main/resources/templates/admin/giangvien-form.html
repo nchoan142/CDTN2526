@@ -5,13 +5,17 @@
 <nav th:replace="~{fragments/layout :: sidebar}"></nav>
 <div class="main-content">
     <div class="page-header"><h2><i class="bi bi-person-badge"></i> <span th:text="${giangVien.id != null} ? 'Sửa Giảng viên' : 'Thêm Giảng viên'"></span></h2></div>
+    
+    <!-- Thêm component "alert" thông báo lỗi -->
+    <div th:replace="~{fragments/layout :: alert}"></div>
+
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <form th:action="@{/admin/giangvien/save}" method="post" th:object="${giangVien}">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="row g-3">
                     <div class="col-md-4"><label class="form-label">Mã GV *</label><input type="text" class="form-control" th:field="*{maGiangVien}" required/></div>
-                    <div class="col-md-4"><label class="form-label">Họ tên đệm</label><input type="text" class="form-control" th:field="*{hoTenDem}"/></div>
+<!--                    <div class="col-md-4"><label class="form-label">Họ tên đệm</label><input type="text" class="form-control" th:field="*{hoTenDem}"/></div>-->
                     <div class="col-md-4"><label class="form-label">Tên *</label><input type="text" class="form-control" th:field="*{ten}" required/></div>
                     <div class="col-md-4"><label class="form-label">Mật khẩu đăng nhập</label><input type="password" class="form-control" name="rawPassword" th:placeholder="${giangVien.id != null} ? 'Để trống nếu không đổi' : 'Mặc định = Mã GV'"/></div>
                     <div class="col-md-3"><label class="form-label">Học vị</label><input type="text" class="form-control" th:field="*{hocVi}" placeholder="ThS, TS, PGS..."/></div>
@@ -20,10 +24,10 @@
                     <div class="col-md-3"><label class="form-label">SĐT</label><input type="text" class="form-control" th:field="*{dienThoai}"/></div>
                     <div class="col-md-6"><label class="form-label">Email 1</label><input type="email" class="form-control" th:field="*{email1}"/></div>
                     <div class="col-md-6"><label class="form-label">Email 2</label><input type="email" class="form-control" th:field="*{email2}"/></div>
-                    <div class="col-md-2"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleGiangVien}" value="1"/><label class="form-check-label">Giảng viên</label></div></div>
-                    <div class="col-md-2"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleQuanTri}" value="1"/><label class="form-check-label">Quản trị</label></div></div>
-                    <div class="col-md-2"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleThuKy}" value="1"/><label class="form-check-label">Thư ký</label></div></div>
-                    <div class="col-md-2"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleThinhGiang}" value="1"/><label class="form-check-label">Thỉnh giảng</label></div></div>
+                    <div class="col-md-1"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleGiangVien}" value="1"/><label class="form-check-label">Giảng viên</label></div></div>
+                    <div class="col-md-1"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleQuanTri}" value="1"/><label class="form-check-label">Quản trị</label></div></div>
+                    <div class="col-md-1"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleThuKy}" value="1"/><label class="form-check-label">Thư ký</label></div></div>
+                    <div class="col-md-1"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleThinhGiang}" value="1"/><label class="form-check-label">Thỉnh giảng</label></div></div>
                 </div>
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Lưu</button>
