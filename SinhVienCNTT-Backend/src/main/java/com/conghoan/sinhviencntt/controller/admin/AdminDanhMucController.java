@@ -2,6 +2,7 @@ package com.conghoan.sinhviencntt.controller.admin;
 
 import com.conghoan.sinhviencntt.entity.DanhMuc;
 import com.conghoan.sinhviencntt.repository.DanhMucRepository;
+import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +21,11 @@ public class AdminDanhMucController {
     }
 
     private final DanhMucRepository repo;
+    private final GiangVienRepository giangVienRepo;
 
-    public AdminDanhMucController(DanhMucRepository repo) {
+    public AdminDanhMucController(DanhMucRepository repo, GiangVienRepository giangVienRepo) {
         this.repo = repo;
+        this.giangVienRepo = giangVienRepo;
     }
 
     @GetMapping
@@ -44,7 +47,17 @@ public class AdminDanhMucController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute DanhMuc danhMuc, RedirectAttributes ra) {
+    public String save(@ModelAttribute("danhMuc") DanhMuc danhMuc, RedirectAttributes ra, Model model) {
+        // Kiểm tra xem người quản lý (giảng viên) có tồn tại không
+        if (danhMuc.getNguoiQuanLy() != null) {
+            boolean giangVienExists = giangVienRepo.existsByMaGiangVien(danhMuc.getNguoiQuanLy());
+            
+            if (!giangVienExists) {
+                model.addAttribute("error", "Người quản lý '" + danhMuc.getNguoiQuanLy() + "' không tồn tại!");
+                return "admin/danhmuc-form";
+            }
+        }
+        
         repo.save(danhMuc);
         ra.addFlashAttribute("success", "Lưu danh mục thành công!");
         return "redirect:/admin/danhmuc";

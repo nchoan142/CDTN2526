@@ -5,6 +5,9 @@
 <nav th:replace="~{fragments/layout :: sidebar}"></nav>
 <div class="main-content">
     <div class="page-header"><h2><i class="bi bi-grid"></i> <span th:text="${danhMuc.id != null} ? 'Sửa Danh mục' : 'Thêm Danh mục'"></span></h2></div>
+
+    <div th:replace="~{fragments/layout :: alert}"></div>
+
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <form th:action="@{/admin/danhmuc/save}" method="post" th:object="${danhMuc}">

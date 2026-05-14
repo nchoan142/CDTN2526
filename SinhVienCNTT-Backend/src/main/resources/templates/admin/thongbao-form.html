@@ -5,6 +5,9 @@
 <nav th:replace="~{fragments/layout :: sidebar}"></nav>
 <div class="main-content">
     <div class="page-header"><h2><i class="bi bi-megaphone"></i> <span th:text="${thongBao.id != null} ? 'Sửa Thông báo' : 'Tạo Thông báo'"></span></h2></div>
+    
+    <div th:replace="~{fragments/layout :: alert}"></div>
+    
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <form th:action="@{/admin/thongbao/save}" method="post" th:object="${thongBao}">

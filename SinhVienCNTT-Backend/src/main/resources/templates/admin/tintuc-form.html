@@ -5,6 +5,9 @@
 <nav th:replace="~{fragments/layout :: sidebar}"></nav>
 <div class="main-content">
     <div class="page-header"><h2><i class="bi bi-newspaper"></i> <span th:text="${tinTuc.id != null} ? 'Sửa Tin tức' : 'Thêm Tin tức'"></span></h2></div>
+
+    <div th:replace="~{fragments/layout :: alert}"></div>
+
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <form th:action="@{/admin/tintuc/save}" method="post" th:object="${tinTuc}">

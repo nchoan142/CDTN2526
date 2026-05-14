@@ -2,6 +2,7 @@ package com.conghoan.sinhviencntt.controller.admin;
 
 import com.conghoan.sinhviencntt.entity.TinTuc;
 import com.conghoan.sinhviencntt.repository.TinTucRepository;
+import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +23,11 @@ public class AdminTinTucController {
     }
 
     private final TinTucRepository repo;
+    private final GiangVienRepository giangVienRepo;
 
-    public AdminTinTucController(TinTucRepository repo) {
+    public AdminTinTucController(TinTucRepository repo, GiangVienRepository giangVienRepo) {
         this.repo = repo;
+        this.giangVienRepo = giangVienRepo;
     }
 
     @GetMapping
@@ -46,7 +49,17 @@ public class AdminTinTucController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute TinTuc tinTuc, RedirectAttributes ra) {
+    public String save(@ModelAttribute("tinTuc") TinTuc tinTuc, RedirectAttributes ra, Model model) {
+        // Kiểm tra xem người gửi (giảng viên) có tồn tại không
+        if (tinTuc.getNguoiDang() != null) {
+            boolean giangVienExists = giangVienRepo.existsByMaGiangVien(tinTuc.getNguoiDang());
+
+            if (!giangVienExists) {
+                model.addAttribute("error", "Mã người gửi '" + tinTuc.getNguoiDang() + "' không tồn tại trong hệ thống!");
+                return "admin/tintuc-form";
+            }
+        }
+
         if (tinTuc.getNgayDang() == null) {
             tinTuc.setNgayDang(LocalDateTime.now());
         }

@@ -37,4 +37,8 @@ public class GiangVien {
     @Column(name = "quan_tri")
     private Integer roleQuanTri;
     private Integer trangThai;
+
+    @ManyToOne
+    @JoinColumn(name = "nguoi_quan_ly", referencedColumnName = "username")
+    private TaiKhoanAdmin adminQuanLy;
 }

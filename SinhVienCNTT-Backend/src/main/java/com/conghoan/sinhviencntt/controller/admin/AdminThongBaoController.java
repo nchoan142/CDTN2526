@@ -1,6 +1,7 @@
 package com.conghoan.sinhviencntt.controller.admin;
 
 import com.conghoan.sinhviencntt.entity.ThongBao;
+import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import com.conghoan.sinhviencntt.repository.ThongBaoRepository;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,11 @@ public class AdminThongBaoController {
     }
 
     private final ThongBaoRepository repo;
+    private final GiangVienRepository giangVienRepo;
 
-    public AdminThongBaoController(ThongBaoRepository repo) {
+    public AdminThongBaoController(ThongBaoRepository repo, GiangVienRepository giangVienRepo) {
         this.repo = repo;
+        this.giangVienRepo = giangVienRepo;
     }
 
     @GetMapping
@@ -46,7 +49,17 @@ public class AdminThongBaoController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute ThongBao thongBao, RedirectAttributes ra) {
+    public String save(@ModelAttribute("thongBao") ThongBao thongBao, RedirectAttributes ra, Model model) {
+        // Kiểm tra xem người gửi (giảng viên) có tồn tại không
+        if (thongBao.getNguoiGui() != null) {
+            boolean giangVienExists = giangVienRepo.existsByMaGiangVien(thongBao.getNguoiGui());
+            
+            if (!giangVienExists) {
+                model.addAttribute("error", "Mã người gửi '" + thongBao.getNguoiGui() + "' không tồn tại trong hệ thống!");
+                return "admin/thongbao-form";
+            }
+        }
+
         if (thongBao.getNgayGui() == null) {
             thongBao.setNgayGui(LocalDateTime.now());
         }
