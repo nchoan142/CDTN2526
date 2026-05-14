@@ -1,0 +1,79 @@
+[
+    {
+        "id": 1,
+        "stt": null,
+        "tenVietTat": "Học",
+        "tenDayDu": "Chương trình học",
+        "linkAnh": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s",
+        "linkTruyCap": "http://101.99.23.5/api/chuong-trinh-hoc",
+        "nguoiQuanLy": "CTI061",
+        "dangDung": true,
+        "danhMucCha": 0
+    },
+    {
+        "id": 2,
+        "stt": null,
+        "tenVietTat": "Thông tin",
+        "tenDayDu": "Thông tin sinh viên",
+        "linkAnh": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s",
+        "linkTruyCap": "http://101.99.23.5/api/v1/sinhvien/{msv}",
+        "nguoiQuanLy": "CTI061",
+        "dangDung": true,
+        "danhMucCha": 0
+    },
+    {
+        "id": 3,
+        "stt": null,
+        "tenVietTat": "Học",
+        "tenDayDu": "Chương trình học",
+        "linkAnh": null,
+        "linkTruyCap": null,
+        "nguoiQuanLy": null,
+        "dangDung": null,
+        "danhMucCha": null
+    },
+    {
+        "id": 4,
+        "stt": null,
+        "tenVietTat": "CVHT",
+        "tenDayDu": "Thông tin Cố vấn học tập",
+        "linkAnh": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s",
+        "linkTruyCap": "http://101.99.23.5/api/v1/covanhoctap/2526K1",
+        "nguoiQuanLy": "CTI061",
+        "dangDung": true,
+        "danhMucCha": 0
+    },
+    {
+        "id": 5,
+        "stt": null,
+        "tenVietTat": "CVHT",
+        "tenDayDu": "Thông tin Cố vấn học tập",
+        "linkAnh": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s",
+        "linkTruyCap": "http://101.99.23.5/api/v1/covanhoctap/{}",
+        "nguoiQuanLy": "CTI061",
+        "dangDung": true,
+        "danhMucCha": 0
+    },
+    {
+        "id": 6,
+        "stt": null,
+        "tenVietTat": "CVHT",
+        "tenDayDu": "Thông tin Cố vấn học tập",
+        "linkAnh": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s",
+        "linkTruyCap": "http://101.99.23.5/api/v1/covanhoctap/2526K1",
+        "nguoiQuanLy": "CTI061",
+        "dangDung": true,
+        "danhMucCha": 0
+    },
+    {
+        "id": 7,
+        "stt": null,
+        "tenVietTat": "Điểm",
+        "tenDayDu": "Bảng điểm học tập",
+        "linkAnh": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVtF8EtjFErDW47Tyx9wv7FHuMP-gK0WZFQ&s",
+        "linkTruyCap": "http://101.99.23.5/api/v1/chuongTrinhHocBangDiem/{msv}",
+        "nguoiQuanLy": "CTI061",
+        "dangDung": true,
+        "danhMucCha": 0
+    }
+]

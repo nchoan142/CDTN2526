@@ -1,0 +1,93 @@
+[
+    {
+        "id": 43,
+        "maHocPhan": "CS100",
+        "tenHocPhan": "Tin đại cương",
+        "maGiangVien": "CTI019",
+        "soTinChi": 2,
+        "tienQuyet": "",
+        "loaiHocPhan": "KHAC",
+        "diemTongKet": 7.2,
+        "soLanThi": 0,
+        "khoa": "KHAC",
+        "chuyenNganhId": "KHAC"
+    },
+    {
+        "id": 446,
+        "maHocPhan": "GE111",
+        "tenHocPhan": "Tiếng Anh sơ cấp 1",
+        "maGiangVien": null,
+        "soTinChi": 2,
+        "tienQuyet": null,
+        "loaiHocPhan": "KHAC",
+        "diemTongKet": 7.4,
+        "soLanThi": 0,
+        "khoa": "KHAC",
+        "chuyenNganhId": "KHAC"
+    },
+    {
+        "id": 460,
+        "maHocPhan": "MA101",
+        "tenHocPhan": "Logic, suy luận toán học và kỹ thuật đếm",
+        "maGiangVien": null,
+        "soTinChi": 3,
+        "tienQuyet": null,
+        "loaiHocPhan": "KHAC",
+        "diemTongKet": -1.0,
+        "soLanThi": 0,
+        "khoa": "KHAC",
+        "chuyenNganhId": "KHAC"
+    },
+    {
+        "id": 423,
+        "maHocPhan": "ML113",
+        "tenHocPhan": "Triết học Mác - Lênin",
+        "maGiangVien": null,
+        "soTinChi": 3,
+        "tienQuyet": null,
+        "loaiHocPhan": "KHAC",
+        "diemTongKet": 7.2,
+        "soLanThi": 0,
+        "khoa": "KHAC",
+        "chuyenNganhId": "KHAC"
+    },
+    {
+        "id": 444,
+        "maHocPhan": "PG118",
+        "tenHocPhan": "GDTC: Thể dục cơ bản",
+        "maGiangVien": null,
+        "soTinChi": 1,
+        "tienQuyet": null,
+        "loaiHocPhan": "KHAC",
+        "diemTongKet": 10.0,
+        "soLanThi": 0,
+        "khoa": "KHAC",
+        "chuyenNganhId": "KHAC"
+    },
+    {
+        "id": 404,
+        "maHocPhan": "SH131",
+        "tenHocPhan": "Pháp luật đại cương",
+        "maGiangVien": null,
+        "soTinChi": 2,
+        "tienQuyet": null,
+        "loaiHocPhan": "KHAC",
+        "diemTongKet": 5.8,
+        "soLanThi": 0,
+        "khoa": "KHAC",
+        "chuyenNganhId": "KHAC"
+    },
+    {
+        "id": 408,
+        "maHocPhan": "VL101",
+        "tenHocPhan": "Tiếng Việt thực hành",
+        "maGiangVien": null,
+        "soTinChi": 2,
+        "tienQuyet": null,
+        "loaiHocPhan": "KHAC",
+        "diemTongKet": 6.1,
+        "soLanThi": 0,
+        "khoa": "KHAC",
+        "chuyenNganhId": "KHAC"
+    }
+]

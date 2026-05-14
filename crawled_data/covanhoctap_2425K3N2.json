@@ -1,0 +1,443 @@
+[
+    {
+        "id": 64,
+        "maGiangVien": "CTI005",
+        "maLop": "TC30",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 65,
+        "maGiangVien": "CTI005",
+        "maLop": "TC31",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 66,
+        "maGiangVien": "CTI005",
+        "maLop": "TC32",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 67,
+        "maGiangVien": "CTI005",
+        "maLop": "TC33",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 68,
+        "maGiangVien": "CTI005",
+        "maLop": "TC34",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 69,
+        "maGiangVien": "CTI005",
+        "maLop": "TC35",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 70,
+        "maGiangVien": "CTI005",
+        "maLop": "TC36",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 71,
+        "maGiangVien": "CTI057",
+        "maLop": "TE31",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 72,
+        "maGiangVien": "CTI057",
+        "maLop": "TE32",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 73,
+        "maGiangVien": "CTI057",
+        "maLop": "TE33",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 74,
+        "maGiangVien": "CTI003",
+        "maLop": "TE34",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 75,
+        "maGiangVien": "CTI003",
+        "maLop": "TE35",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 76,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32c1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 77,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32e1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 78,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32g1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 79,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32h1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 80,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32h2",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 81,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32h3",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 82,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32h4",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 83,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32h5",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 84,
+        "maGiangVien": "CTI068",
+        "maLop": "TT32h6",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 85,
+        "maGiangVien": "CTI068",
+        "maLop": "TT35CL03",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 86,
+        "maGiangVien": "CTI068",
+        "maLop": "TT35CL05",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 87,
+        "maGiangVien": "CTI068",
+        "maLop": "TT35CL06",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 88,
+        "maGiangVien": "CTI068",
+        "maLop": "TT35CL07",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 89,
+        "maGiangVien": "CTI068",
+        "maLop": "TT3601",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 90,
+        "maGiangVien": "CTI068",
+        "maLop": "TT3602",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 91,
+        "maGiangVien": "CTI068",
+        "maLop": "TT3603",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 92,
+        "maGiangVien": "CTI063",
+        "maLop": "TT33c1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 93,
+        "maGiangVien": "CTI063",
+        "maLop": "TT33d1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 94,
+        "maGiangVien": "CTI063",
+        "maLop": "TT33e1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 95,
+        "maGiangVien": "CTI063",
+        "maLop": "TT33g1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 96,
+        "maGiangVien": "CTI063",
+        "maLop": "TT33h1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 97,
+        "maGiangVien": "CTI063",
+        "maLop": "TT3604",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 98,
+        "maGiangVien": "CTI061",
+        "maLop": "TT34h4",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 99,
+        "maGiangVien": "CTI061",
+        "maLop": "TT34h5",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 100,
+        "maGiangVien": "CTI061",
+        "maLop": "TT34h6",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 101,
+        "maGiangVien": "CTI060",
+        "maLop": "TT35CL01",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 102,
+        "maGiangVien": "CTI060",
+        "maLop": "TT35CL04",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 103,
+        "maGiangVien": "CTI064",
+        "maLop": "TI30",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 104,
+        "maGiangVien": "CTI064",
+        "maLop": "TI31",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 105,
+        "maGiangVien": "CTI064",
+        "maLop": "TI32",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 106,
+        "maGiangVien": "CTI064",
+        "maLop": "TI33",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 107,
+        "maGiangVien": "CTI064",
+        "maLop": "TA33c1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 108,
+        "maGiangVien": "CTI064",
+        "maLop": "TI34c1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 109,
+        "maGiangVien": "CTI064",
+        "maLop": "TI34d1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 110,
+        "maGiangVien": "CTI064",
+        "maLop": "TI34h1",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 111,
+        "maGiangVien": "CTI064",
+        "maLop": "TI34h2",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 112,
+        "maGiangVien": "CTI064",
+        "maLop": "TI3601",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 113,
+        "maGiangVien": "CTI064",
+        "maLop": "TI3701",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 114,
+        "maGiangVien": "CTI049",
+        "maLop": "TI35",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 115,
+        "maGiangVien": "CTI066",
+        "maLop": "TI3602",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 116,
+        "maGiangVien": "CTI062",
+        "maLop": "TI3603",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 117,
+        "maGiangVien": "PAI001",
+        "maLop": "TA33",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 118,
+        "maGiangVien": "PAI001",
+        "maLop": "TA34",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 119,
+        "maGiangVien": "PAI001",
+        "maLop": "TA35",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 120,
+        "maGiangVien": "PAI001",
+        "maLop": "TA36",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 121,
+        "maGiangVien": "PAI001",
+        "maLop": "TA37",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 122,
+        "maGiangVien": "PAI001",
+        "maLop": "TI3702",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 123,
+        "maGiangVien": "PAI001",
+        "maLop": "TT3701",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 124,
+        "maGiangVien": "PAI001",
+        "maLop": "TT3702",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 125,
+        "maGiangVien": "PAI001",
+        "maLop": "TT3703",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    },
+    {
+        "id": 126,
+        "maGiangVien": "CTI072",
+        "maLop": "TT3704",
+        "maKy": "2425K3N2",
+        "ghiChu": null
+    }
+]

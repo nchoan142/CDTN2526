@@ -1,0 +1,5 @@
+{
+    "code": 0,
+    "content": "thanhnx@thanglong.edu.vn",
+    "extent": "{\n  \"id\" : 12,\n  \"maGiangVien\" : \"CTI061\",\n  \"password\" : null,\n  \"hoTenDem\" : null,\n  \"ten\" : \"Nguyễn Xuân Thanh\",\n  \"donVi\" : \"TT\",\n  \"dienThoai\" : \"0904222294\",\n  \"email1\" : \"dth052k4@gmail.com\",\n  \"email2\" : \"\",\n  \"ghiChu\" : null,\n  \"hocHam\" : null,\n  \"hocVi\" : \"ThS\",\n  \"giangVien\" : 0,\n  \"coHuu1\" : 1,\n  \"coHuu2\" : 0,\n  \"thinhGiang\" : 0,\n  \"thuKy\" : 1,\n  \"quanTri\" : 1,\n  \"trangThai\" : 0\n}"
+}

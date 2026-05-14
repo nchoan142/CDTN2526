@@ -1,0 +1,20 @@
+{
+    "id": 1,
+    "maSinhVien": "A38200",
+    "password": null,
+    "ten": "TRỊNH HOÀNG ĐĂNG",
+    "hoTenDem": null,
+    "ngaySinh": "04-08-02",
+    "nhapHoc": "TT33",
+    "lop": null,
+    "khoa": "33",
+    "lopChuyenNganh": "TA33c1",
+    "nganh": "TA33",
+    "email1": "A38200@thanglong.edu.vn",
+    "email2": "Dangtr0408@gmail.com",
+    "dienThoai1": "0904114111",
+    "dienThoai2": "0989889970",
+    "ghiChu": "",
+    "khoaNhapHoc": "33",
+    "trangThai": 0
+}
