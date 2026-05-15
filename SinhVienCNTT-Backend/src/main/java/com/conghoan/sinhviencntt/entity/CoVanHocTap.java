@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "co_van_hoc_tap", indexes = {
+@Table(name = "co_van_hoc_tap", indexes = { // Tạo index giúp lấy dữ liệu nhanh hơn, thay vì lấy tất cả dữ liệu, ta chỉ lấy dữ liệu từ 2 cột: ma_ky, ma_giang_vien
     @Index(name = "idx_cvht_ky", columnList = "ma_ky"),
     @Index(name = "idx_cvht_gv", columnList = "ma_giang_vien")
 })
@@ -28,7 +28,7 @@ public class CoVanHocTap {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ma_giang_vien", referencedColumnName = "ma_giang_vien",
             insertable = false, updatable = false,
-            foreignKey = @ForeignKey(name = "fk_cvht_giangvien"))
+            foreignKey = @ForeignKey(name = "fk_cvht_gv"))
     @JsonIgnore
     private GiangVien giangVien;
 
