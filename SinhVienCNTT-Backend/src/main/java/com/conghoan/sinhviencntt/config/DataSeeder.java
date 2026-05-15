@@ -253,40 +253,95 @@ public class DataSeeder implements CommandLineRunner {
         try {
             Path file = Path.of(crawledDataPath, "giang_vien.json");
             if (!Files.exists(file)) return;
+
             Reader reader = new FileReader(file.toFile());
             JsonObject wrapper = gson.fromJson(reader, JsonObject.class);
             reader.close();
-            String extentStr = getStr(wrapper, "extent");
-            if (extentStr == null) return;
-            JsonObject obj = gson.fromJson(extentStr, JsonObject.class);
-            String maGv = getStr(obj, "maGiangVien");
-            if (maGv == null || giangVienRepo.existsByMaGiangVien(maGv)) return;
-            GiangVien gv = GiangVien.builder()
-                    .maGiangVien(maGv)
-                    .password(passwordEncoder.encode(maGv)) // Mật khẩu mặc định = mã giảng viên
-                    .ten(getStr(obj, "ten"))
-                    .hoTenDem(getStr(obj, "hoTenDem"))
-                    .donVi(getStr(obj, "donVi"))
-                    .dienThoai(getStr(obj, "dienThoai"))
-                    .email1(getStr(obj, "email1"))
-                    .email2(getStr(obj, "email2"))
-                    .ghiChu(getStr(obj, "ghiChu"))
-                    .hocHam(getStr(obj, "hocHam"))
-                    .hocVi(getStr(obj, "hocVi"))
-                    .roleGiangVien(getInt(obj, "giangVien"))
-                    .coHuu1(getInt(obj, "coHuu1"))
-                    .coHuu2(getInt(obj, "coHuu2"))
-                    .roleThinhGiang(getInt(obj, "thinhGiang"))
-                    .roleThuKy(getInt(obj, "thuKy"))
-                    .roleQuanTri(getInt(obj, "quanTri"))
-                    .trangThai(getInt(obj, "trangThai"))
-                    .build();
-            giangVienRepo.save(gv);
+
+            if (!wrapper.has("data") || wrapper.get("data").isJsonNull()) return;
+            JsonArray dataArray = wrapper.getAsJsonArray("data");
+
+            for (JsonElement element : dataArray) {
+                JsonObject obj = element.getAsJsonObject();
+                String maGv = getStr(obj, "ma_giang_vien"); // Chú ý: JSON của bạn dùng "ma_giang_vien"
+
+                if (maGv == null) continue;
+
+                GiangVien gv = giangVienRepo.findByMaGiangVien(maGv).orElse(new GiangVien());
+                String usernameAdmin = getStr(obj, "nguoi_quan_ly");
+                TaiKhoanAdmin admin = adminRepo.findByUsername(usernameAdmin).orElse(null);
+                if (admin != null) {
+                    gv.setAdminQuanLy(admin);
+                }
+
+
+                gv.setMaGiangVien(maGv);
+                if (gv.getPassword() == null) gv.setPassword(passwordEncoder.encode(maGv));
+                gv.setTen(getStr(obj, "ten"));
+                gv.setHoTenDem(getStr(obj, "ho_ten_dem"));
+                gv.setDonVi(getStr(obj, "don_vi"));
+                gv.setDienThoai(getStr(obj, "dien_thoai"));
+                gv.setEmail1(getStr(obj, "email1"));
+                gv.setEmail2(getStr(obj, "email2"));
+                gv.setGhiChu(getStr(obj, "ghi_chu"));
+                gv.setHocHam(getStr(obj, "hoc_ham"));
+                gv.setHocVi(getStr(obj, "hoc_vi"));
+                gv.setRoleGiangVien(getInt(obj, "giang_vien"));
+                gv.setCoHuu1(getInt(obj, "co_huu1"));
+                gv.setCoHuu2(getInt(obj, "co_huu2"));
+                gv.setRoleThinhGiang(getInt(obj, "thinh_giang"));
+                gv.setRoleThuKy(getInt(obj, "thu_ky"));
+                gv.setRoleQuanTri(getInt(obj, "quan_tri"));
+                gv.setTrangThai(getInt(obj, "trang_thai"));
+
+                giangVienRepo.save(gv);
+            }
             System.out.println(">>> Import giang vien: " + giangVienRepo.count());
         } catch (Exception e) {
             System.err.println("Loi import giang vien: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
+//    private void importGiangVien() {
+//        try {
+//            Path file = Path.of(crawledDataPath, "giang_vien.json");
+//            if (!Files.exists(file)) return;
+//            Reader reader = new FileReader(file.toFile());
+//            JsonObject wrapper = gson.fromJson(reader, JsonObject.class);
+//            reader.close();
+//            String extentStr = getStr(wrapper, "extent");
+//            if (extentStr == null) return;
+//            JsonObject obj = gson.fromJson(extentStr, JsonObject.class);
+//            String maGv = getStr(obj, "maGiangVien");
+//            if (maGv == null || giangVienRepo.existsByMaGiangVien(maGv)) return;
+//            GiangVien gv = GiangVien.builder()
+//                    .maGiangVien(maGv)
+//                    .password(passwordEncoder.encode(maGv)) // Mật khẩu mặc định = mã giảng viên
+//                    .ten(getStr(obj, "ten"))
+//                    .hoTenDem(getStr(obj, "hoTenDem"))
+//                    .donVi(getStr(obj, "donVi"))
+//                    .dienThoai(getStr(obj, "dienThoai"))
+//                    .email1(getStr(obj, "email1"))
+//                    .email2(getStr(obj, "email2"))
+//                    .ghiChu(getStr(obj, "ghiChu"))
+//                    .hocHam(getStr(obj, "hocHam"))
+//                    .hocVi(getStr(obj, "hocVi"))
+//                    .roleGiangVien(getInt(obj, "giangVien"))
+//                    .coHuu1(getInt(obj, "coHuu1"))
+//                    .coHuu2(getInt(obj, "coHuu2"))
+//                    .roleThinhGiang(getInt(obj, "thinhGiang"))
+//                    .roleThuKy(getInt(obj, "thuKy"))
+//                    .roleQuanTri(getInt(obj, "quanTri"))
+//                    .trangThai(getInt(obj, "trangThai"))
+//                    .adminQuanLy(getStr(obj, "nguoi_quan_ly"))
+//                    .build();
+//            giangVienRepo.save(gv);
+//            System.out.println(">>> Import giang vien: " + giangVienRepo.count());
+//        } catch (Exception e) {
+//            System.err.println("Loi import giang vien: " + e.getMessage());
+//        }
+//    }
 
     private void importBangDiem() {
         try {
@@ -369,7 +424,7 @@ public class DataSeeder implements CommandLineRunner {
                     count++;
                 }
             }
-            System.out.println(">>> Import bang diem: " + count + " dong tu " + bangDiemFiles.length + " file (skip " + skippedNoSv + " file vi SV chua import, tao " + gvPlaceholders + " placeholder GV)");
+            System.out.println(">>> Import bang diem: " + count + " dong tu " + bangDiemFiles.length + " file");
         } catch (Exception e) {
             System.err.println("Loi import bang diem: " + e.getMessage());
         }
@@ -402,7 +457,7 @@ public class DataSeeder implements CommandLineRunner {
         if (tenVT == null) return null;
         String t = tenVT.trim().toUpperCase();
         switch (t) {
-            case "HS": case "HSCN": case "PROFILE": case "HOSO": return "PROFILE";
+            case "Thông tin": case "HSCN": case "PROFILE": case "HOSO": return "PROFILE";
             case "TKB": case "LICH": return "TKB";
             case "BD": case "BANGDIEM": case "DIEM": return "BANGDIEM";
             case "KHOA": case "CNTT": return "KHOA";
