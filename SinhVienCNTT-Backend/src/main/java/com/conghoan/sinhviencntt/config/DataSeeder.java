@@ -369,7 +369,7 @@ public class DataSeeder implements CommandLineRunner {
                     count++;
                 }
             }
-            System.out.println(">>> Import bang diem: " + count + " dong tu " + bangDiemFiles.length + " file (skip " + skippedNoSv + " file vi SV chua import, tao " + gvPlaceholders + " placeholder GV)");
+            System.out.println(">>> Import bang diem: " + count + " dong tu " + bangDiemFiles.length + " file");
         } catch (Exception e) {
             System.err.println("Loi import bang diem: " + e.getMessage());
         }
