@@ -38,7 +38,7 @@ public class GiangVien {
     private Integer roleQuanTri;
     private Integer trangThai;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nguoi_quan_ly", referencedColumnName = "username")
     private TaiKhoanAdmin adminQuanLy;
 }

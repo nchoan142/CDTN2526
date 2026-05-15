@@ -21,6 +21,7 @@ public class DanhMuc {
     @Column(length = 500)
     private String linkTruyCap;
 
+    @Column(name = "nguoi_quan_ly")
     private String nguoiQuanLy;
     private Boolean dangDung;
 
@@ -33,4 +34,8 @@ public class DanhMuc {
 
     @Column(length = 50)
     private String maManHinh;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "nguoi_quan_ly", referencedColumnName = "ma_giang_vien", insertable = false, updatable = false)
+    private GiangVien giangVienQuanLy;
 }
