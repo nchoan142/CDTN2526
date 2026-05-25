@@ -1,6 +1,7 @@
 package com.conghoan.sinhviencntt.controller.admin;
 
 import com.conghoan.sinhviencntt.entity.GiangVien;
+import com.conghoan.sinhviencntt.entity.SinhVien;
 import com.conghoan.sinhviencntt.entity.TaiKhoanAdmin;
 import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import com.conghoan.sinhviencntt.repository.TaiKhoanAdminRepository;
@@ -35,16 +36,33 @@ public class AdminGiangVienController {
     }
 
     @GetMapping
-    public String list(@RequestParam(value = "search", required = false) String search, Model model) {
-        List<GiangVien> list = repo.findAll();
+    public String list(@RequestParam(required = false) String search, Model model) {
         if (search != null && !search.trim().isEmpty()) {
             String keyword = search.trim().toLowerCase();
-            list = list.stream()
-                    .filter(gv -> gv.getMaGiangVien() != null && gv.getMaGiangVien().toLowerCase().contains(keyword))
+
+            List<GiangVien> filteredList = repo.findByTenContainingIgnoreCaseOrMaGiangVienContainingIgnoreCase(keyword, keyword)
+                    .stream()
+                    .filter(sv -> {
+                        boolean matchMaGV = false;
+                        boolean matchTenGV = false;
+                        // Lọc giảng viên theo mã giảng viên hoặc tên giảng viên
+                        if (sv.getMaGiangVien() != null && sv.getMaGiangVien().toLowerCase().contains(keyword)) {
+                            matchMaGV = true;
+                        }
+                        if (sv.getTen() != null) {
+                            String ten = sv.getTen().toLowerCase();
+                            if (ten.endsWith(" " + keyword)) {
+                                matchTenGV = true;
+                            }
+                        }
+                        return matchMaGV || matchTenGV;
+                    })
                     .toList();
+            model.addAttribute("list", filteredList);
             model.addAttribute("search", search);
+        } else {
+            model.addAttribute("list", repo.findAll());
         }
-        model.addAttribute("list", list);
         return "admin/giangvien-list";
     }
 
@@ -56,7 +74,9 @@ public class AdminGiangVienController {
 
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Long id, Model model) {
-        model.addAttribute("giangVien", repo.findById(id).orElseThrow());
+        GiangVien giangVien = repo.findById(id).orElseThrow();
+        giangVien.setPassword("");
+        model.addAttribute("giangVien", giangVien);
         return "admin/giangvien-form";
     }
 

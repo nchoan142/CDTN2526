@@ -62,7 +62,7 @@ public class PhongDaoTaoActivity extends AppCompatActivity {
         List<ThongBaoModel> out = new ArrayList<>();
         if (all == null) return out;
         for (ThongBaoModel tb : all) {
-            String nguoi = tb.getNguoiDang() == null ? "" : tb.getNguoiDang().toLowerCase();
+            String nguoi = tb.getNguoiGui() == null ? "" : tb.getNguoiGui().toLowerCase();
             if (nguoi.contains("phòng đào tạo") || nguoi.contains("phong dao tao") || nguoi.contains("pdt")) {
                 out.add(tb);
             }

@@ -24,11 +24,13 @@ public class AdminBangDiemController {
     private final BangDiemRepository repo;
     private final SinhVienRepository svRepo;
     private final GiangVienRepository giangVienRepo;
+    private final SinhVienRepository sinhVienRepo;
 
-    public AdminBangDiemController(BangDiemRepository repo, SinhVienRepository svRepo, GiangVienRepository giangVienRepo) {
+    public AdminBangDiemController(BangDiemRepository repo, SinhVienRepository svRepo, GiangVienRepository giangVienRepo, SinhVienRepository sinhVienRepo) {
         this.repo = repo;
         this.svRepo = svRepo;
         this.giangVienRepo = giangVienRepo;
+        this.sinhVienRepo = sinhVienRepo;
     }
 
     @GetMapping
@@ -62,7 +64,7 @@ public class AdminBangDiemController {
         BangDiem bd = repo.findById(id).orElseThrow();
         String msv = bd.getMaSinhVien();
         repo.deleteById(id);
-        ra.addFlashAttribute("success", "Xoá bảng học phần thành công!");
+        ra.addFlashAttribute("success", "Xoá đim học phần thành công!");
         return "redirect:/admin/bangdiem?msv=" + msv;
     }
 
@@ -75,6 +77,21 @@ public class AdminBangDiemController {
                 model.addAttribute("isNew", bangDiem.getId() == null);
                 return "admin/bangdiem-form";
             }
+        }
+
+        // Kiểm tra mã sinh viên có tồn tại không
+        if (bangDiem.getMaSinhVien() != null && !bangDiem.getMaSinhVien().isEmpty()) {
+            if (!sinhVienRepo.existsByMaSinhVien(bangDiem.getMaSinhVien())) {
+                model.addAttribute("error", "Mã sinh viên '" + bangDiem.getMaSinhVien() + "' không tồn tại.");
+                model.addAttribute("isNew", bangDiem.getId() == null);
+                return "admin/bangdiem-form";
+            }
+        }
+
+        if (bangDiem.getSoLanThi() == null) {
+            model.addAttribute("error", "Số lần thi không được để trống");
+            model.addAttribute("isNew", bangDiem.getId() == null);
+            return "admin/bangdiem-form";
         }
         repo.save(bangDiem);
         ra.addFlashAttribute("success", "Cập nhật điểm thành công!");

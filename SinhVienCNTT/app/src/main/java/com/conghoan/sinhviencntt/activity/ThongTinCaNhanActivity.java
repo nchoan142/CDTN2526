@@ -68,23 +68,18 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     private void displayInfo(Map<String, Object> data) {
         tvLoading.setVisibility(View.GONE);
 
-        String hoTenDem = getStringValue(data, "hoTenDem");
         String ten = getStringValue(data, "ten");
-        String fullName = (hoTenDem + " " + ten).trim();
         String maSinhVien = getStringValue(data, "maSinhVien");
 
-        tvProfileName.setText(fullName.isEmpty() ? "---" : fullName);
+        tvProfileName.setText(ten.isEmpty() ? "---" : ten);
         tvProfileMsv.setText("MSV: " + (maSinhVien.isEmpty() ? "---" : maSinhVien));
 
         addInfoRow("Mã sinh viên", maSinhVien);
-        addInfoRow("Họ và tên", fullName);
+        addInfoRow("Họ và tên", ten);
         addInfoRow("Ngày sinh", getStringValue(data, "ngaySinh"));
         addInfoRow("Lớp", getStringValue(data, "lop"));
         addInfoRow("Lớp chuyên ngành", getStringValue(data, "lopChuyenNganh"));
         addInfoRow("Ngành", getStringValue(data, "nganh"));
-        addInfoRow("Khoa", getStringValue(data, "khoa"));
-        addInfoRow("Khoá nhập học", getStringValue(data, "khoaNhapHoc"));
-        addInfoRow("Năm nhập học", getStringValue(data, "nhapHoc"));
         addInfoRow("Email 1", getStringValue(data, "email1"));
         addInfoRow("Email 2", getStringValue(data, "email2"));
         addInfoRow("Điện thoại 1", getStringValue(data, "dienThoai1"));

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/sinhvien")
@@ -31,10 +32,29 @@ public class AdminSinhVienController {
 
     @GetMapping
     public String list(@RequestParam(required = false) String search, Model model) {
-        if (search != null && !search.isEmpty()) {
-//            model.addAttribute("list", repo.findByTenContainingIgnoreCaseOrMaSinhVienContainingIgnoreCase(search, search));
-            model.addAttribute("list", repo.findByMaSinhVienContainingIgnoreCase(search));
-//            model.addAttribute("search", repo.findByMaSinhVienContainingIgnoreCase(search));
+        if (search != null && !search.trim().isEmpty()) {
+            String keyword = search.trim().toLowerCase();
+
+            List<SinhVien> filteredList = repo.findByTenContainingIgnoreCaseOrMaSinhVienContainingIgnoreCase(keyword, keyword)
+                    .stream()
+                    .filter(sv -> {
+                        boolean matchMaSV = false;
+                        boolean matchTenSV = false;
+                        // Lọc sinh viên theo mã sinh viên hoặc tên sinh viên
+                        if (sv.getMaSinhVien() != null && sv.getMaSinhVien().toLowerCase().contains(keyword)) {
+                            matchMaSV = true;
+                        }
+                        if (sv.getTen() != null) {
+                            String ten = sv.getTen().toLowerCase();
+                            if (ten.endsWith(" " + keyword)) {
+                                matchTenSV = true;
+                            }
+                        }
+                        return matchMaSV || matchTenSV;
+                    })
+                    .toList();
+            model.addAttribute("list", filteredList);
+            model.addAttribute("search", search);
         } else {
             model.addAttribute("list", repo.findAll());
         }
@@ -49,7 +69,9 @@ public class AdminSinhVienController {
 
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Long id, Model model) {
-        model.addAttribute("sinhVien", repo.findById(id).orElseThrow());
+        SinhVien sinhVien = repo.findById(id).orElseThrow();
+        sinhVien.setPassword("");
+        model.addAttribute("sinhVien", sinhVien);
         return "admin/sinhvien-form";
     }
 
@@ -77,9 +99,11 @@ public class AdminSinhVienController {
                 if (sinhVien.getPassword() == null || sinhVien.getPassword().trim().isEmpty()) {
                     // Bỏ trống mật khẩu -> Lấy lại mật khẩu cũ lưu vào
                     sinhVien.setPassword(existingSinhVien.getPassword());
+                    System.out.println("Chạy nhánh if");
                 } else {
                     // Có nhập mật khẩu mới -> Mã hoá trước khi lưu
                     sinhVien.setPassword(passwordEncoder.encode(sinhVien.getPassword()));
+                    System.out.println("Chạy nhánh else");
                 }
             }
         } else {

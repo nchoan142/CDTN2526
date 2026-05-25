@@ -24,7 +24,7 @@ public class TKBActivity extends AppCompatActivity {
 
     private LinearLayout tkbContainer;
     private int selectedThu = 2;
-    private List<ThoiKhoaBieuModel> allData = new ArrayList<>();
+    private List<ThoiKhoaBieuModel> listTKB = new ArrayList<>();
     private TextView[] tabs;
 
     @Override
@@ -41,13 +41,17 @@ public class TKBActivity extends AppCompatActivity {
         tkbContainer = findViewById(R.id.tkb_container);
         setupDayTabs();
         loadTKB();
+        displayTKB(listTKB);
     }
 
     private void setupDayTabs() {
         tabs = new TextView[]{
-                findViewById(R.id.tab_t2), findViewById(R.id.tab_t3),
-                findViewById(R.id.tab_t4), findViewById(R.id.tab_t5),
-                findViewById(R.id.tab_t6), findViewById(R.id.tab_t7)
+                findViewById(R.id.tab_t2),
+                findViewById(R.id.tab_t3),
+                findViewById(R.id.tab_t4),
+                findViewById(R.id.tab_t5),
+                findViewById(R.id.tab_t6),
+                findViewById(R.id.tab_t7)
         };
         int[] thuValues = {2, 3, 4, 5, 6, 7};
 
@@ -84,23 +88,23 @@ public class TKBActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<ThoiKhoaBieuModel>> call, Response<List<ThoiKhoaBieuModel>> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
-                    allData = response.body();
+                    listTKB = response.body();
                     filterAndDisplay();
                 } else {
-                    setupMockData();
+//                    setupMockData();
                 }
             }
 
             @Override
             public void onFailure(Call<List<ThoiKhoaBieuModel>> call, Throwable t) {
-                setupMockData();
+//                setupMockData();
             }
         });
     }
 
     private void filterAndDisplay() {
         List<ThoiKhoaBieuModel> filtered = new ArrayList<>();
-        for (ThoiKhoaBieuModel tkb : allData) {
+        for (ThoiKhoaBieuModel tkb : listTKB) {
             if (tkb.getThu() != null && tkb.getThu() == selectedThu) {
                 filtered.add(tkb);
             }

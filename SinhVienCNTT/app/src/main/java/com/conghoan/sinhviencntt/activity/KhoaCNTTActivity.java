@@ -54,6 +54,7 @@ public class KhoaCNTTActivity extends AppCompatActivity {
         
     }
 
+    // Lấy tổng số lượng sinh viên trong database và hiển thị lên view
     private void loadSinhVienCount() {
         ApiClient.getApiService(this).getSinhVienCount().enqueue(new Callback<Map<String, Object>>() {
             @Override
@@ -73,6 +74,7 @@ public class KhoaCNTTActivity extends AppCompatActivity {
         });
     }
 
+    // Lấy danh sách giảng viên từ database
     private void loadGiangVien() {
         ApiClient.getApiService(this).getGiangVien().enqueue(new Callback<List<GiangVienModel>>() {
             @Override
@@ -106,27 +108,30 @@ public class KhoaCNTTActivity extends AppCompatActivity {
         teacherContainer.addView(tvEmpty);
     }
 
+    // Hiển thị danh sách giảng viên lên view
     private void displayGiangVien(List<GiangVienModel> list) {
-        // Cập nhật số thống kê
         TextView tvStatGv = findViewById(R.id.tv_stat_gv);
-        if (tvStatGv != null) tvStatGv.setText(String.valueOf(list.size()));
+        if (tvStatGv != null) tvStatGv.setText(String.valueOf(list.size())); // Hiển thị tổng số lượng giảng viên có trong database
 
-        // Hiển thị danh sách GV động
         teacherContainer.removeAllViews();
 
         int[] colors = {R.color.card_tkb, R.color.card_khoa, R.color.card_phongdaotao,
                 R.color.card_bangdiem, R.color.card_hoidap, R.color.card_thongtin};
 
+        // Setup thông tin các thông tin của giảng viên
         for (int i = 0; i < list.size(); i++) {
             GiangVienModel gv = list.get(i);
             View row = getLayoutInflater().inflate(R.layout.item_teacher_row, teacherContainer, false);
 
             ((TextView) row.findViewById(R.id.tv_teacher_name)).setText(gv.getFullName());
-            String gvInfo = gv.getDonVi() != null ? gv.getDonVi() : "Giảng viên";
+            String gvInfo = gv.getDonVi() != null ? gv.getDonVi() : "Khoa CNTT";
             if (gv.getEmail1() != null && !gv.getEmail1().isEmpty()) {
-                gvInfo += " | " + gv.getEmail1() + " | " + gv.getDienThoai();
+                gvInfo += " | " + gv.getEmail1();
             }
-            ((TextView) row.findViewById(R.id.tv_teacher_role)).setText(gvInfo);
+            if (gv.getDienThoai() != null && !gv.getDienThoai().isEmpty()) {
+                gvInfo += " | " + gv.getDienThoai();
+            }
+            ((TextView) row.findViewById(R.id.tv_teacher_info)).setText(gvInfo);
 
             GradientDrawable bg = new GradientDrawable();
             bg.setShape(GradientDrawable.OVAL);
@@ -137,6 +142,7 @@ public class KhoaCNTTActivity extends AppCompatActivity {
         }
     }
 
+    // lấy danh sách tin tức trong database
     private void loadTinTuc() {
         ApiClient.getApiService(this).getTinTuc().enqueue(new Callback<List<ThongBaoModel>>() {
             @Override
@@ -151,6 +157,7 @@ public class KhoaCNTTActivity extends AppCompatActivity {
         });
     }
 
+    // Hiển thị danh sách tin tức lên view
     private void displayTinTuc(List<ThongBaoModel> list) {
         LinearLayout newsContainer = findViewById(R.id.news_container);
         if (newsContainer == null) return;
@@ -189,7 +196,7 @@ public class KhoaCNTTActivity extends AppCompatActivity {
             metaRow.setGravity(android.view.Gravity.CENTER_VERTICAL);
             TextView tvMeta = new TextView(this);
             String meta = (tt.getNguoiDang() != null ? tt.getNguoiDang() : "Khoa CNTT");
-            if (tt.getNgayGui() != null) meta += " | " + tt.getNgayGui().substring(0, Math.min(10, tt.getNgayGui().length()));
+            if (tt.getNgayDang() != null) meta += " | " + tt.getNgayDang().substring(0, Math.min(10, tt.getNgayDang().length()));
             tvMeta.setText(meta);
             tvMeta.setTextColor(getResources().getColor(R.color.text_hint));
             tvMeta.setTextSize(11);
@@ -201,6 +208,7 @@ public class KhoaCNTTActivity extends AppCompatActivity {
         }
     }
 
+    // setup thông tin cho view "Liên hệ"
     private void setupContactRow(int viewId, int iconRes, String label, String value, int bgColorRes) {
         View row = findViewById(viewId);
         ((ImageView) row.findViewById(R.id.iv_contact_icon)).setImageResource(iconRes);

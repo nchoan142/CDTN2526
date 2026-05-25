@@ -22,12 +22,11 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Animate splash content
         LinearLayout splashContent = findViewById(R.id.splash_content);
         splashContent.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_in));
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            // Check if user is logged in
+            // Kiểm tra xem sinh viên có đang đăng nhập không
             SharedPreferences prefs = getSharedPreferences("SinhVienCNTT", MODE_PRIVATE);
             boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
 

@@ -9,12 +9,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class DataSeeder implements CommandLineRunner {
@@ -80,9 +83,9 @@ public class DataSeeder implements CommandLineRunner {
 
     private void fixGiangVienPasswords() {
         // Cập nhật password cho GV chưa có hoặc password chưa mã hóa BCrypt
-        List<com.conghoan.sinhviencntt.entity.GiangVien> allGv = giangVienRepo.findAll();
+        List<GiangVien> allGv = giangVienRepo.findAll();
         int fixed = 0;
-        for (com.conghoan.sinhviencntt.entity.GiangVien gv : allGv) {
+        for (GiangVien gv : allGv) {
             if (gv.getPassword() == null || gv.getPassword().isEmpty()
                     || !gv.getPassword().startsWith("$2")) {
                 gv.setPassword(passwordEncoder.encode(gv.getMaGiangVien()));
@@ -263,7 +266,7 @@ public class DataSeeder implements CommandLineRunner {
 
             for (JsonElement element : dataArray) {
                 JsonObject obj = element.getAsJsonObject();
-                String maGv = getStr(obj, "ma_giang_vien"); // Chú ý: JSON của bạn dùng "ma_giang_vien"
+                String maGv = getStr(obj, "ma_giang_vien");
 
                 if (maGv == null) continue;
 
@@ -303,61 +306,21 @@ public class DataSeeder implements CommandLineRunner {
         }
     }
 
-//    private void importGiangVien() {
-//        try {
-//            Path file = Path.of(crawledDataPath, "giang_vien.json");
-//            if (!Files.exists(file)) return;
-//            Reader reader = new FileReader(file.toFile());
-//            JsonObject wrapper = gson.fromJson(reader, JsonObject.class);
-//            reader.close();
-//            String extentStr = getStr(wrapper, "extent");
-//            if (extentStr == null) return;
-//            JsonObject obj = gson.fromJson(extentStr, JsonObject.class);
-//            String maGv = getStr(obj, "maGiangVien");
-//            if (maGv == null || giangVienRepo.existsByMaGiangVien(maGv)) return;
-//            GiangVien gv = GiangVien.builder()
-//                    .maGiangVien(maGv)
-//                    .password(passwordEncoder.encode(maGv)) // Mật khẩu mặc định = mã giảng viên
-//                    .ten(getStr(obj, "ten"))
-//                    .hoTenDem(getStr(obj, "hoTenDem"))
-//                    .donVi(getStr(obj, "donVi"))
-//                    .dienThoai(getStr(obj, "dienThoai"))
-//                    .email1(getStr(obj, "email1"))
-//                    .email2(getStr(obj, "email2"))
-//                    .ghiChu(getStr(obj, "ghiChu"))
-//                    .hocHam(getStr(obj, "hocHam"))
-//                    .hocVi(getStr(obj, "hocVi"))
-//                    .roleGiangVien(getInt(obj, "giangVien"))
-//                    .coHuu1(getInt(obj, "coHuu1"))
-//                    .coHuu2(getInt(obj, "coHuu2"))
-//                    .roleThinhGiang(getInt(obj, "thinhGiang"))
-//                    .roleThuKy(getInt(obj, "thuKy"))
-//                    .roleQuanTri(getInt(obj, "quanTri"))
-//                    .trangThai(getInt(obj, "trangThai"))
-//                    .adminQuanLy(getStr(obj, "nguoi_quan_ly"))
-//                    .build();
-//            giangVienRepo.save(gv);
-//            System.out.println(">>> Import giang vien: " + giangVienRepo.count());
-//        } catch (Exception e) {
-//            System.err.println("Loi import giang vien: " + e.getMessage());
-//        }
-//    }
 
     private void importBangDiem() {
         try {
-            java.io.File dir = new java.io.File(crawledDataPath);
-            java.io.File[] bangDiemFiles = dir.listFiles((d, name) ->
+            File dir = new File(crawledDataPath);
+            File[] bangDiemFiles = dir.listFiles((d, name) ->
                     name.startsWith("bangdiem_") && name.endsWith(".json"));
             if (bangDiemFiles == null || bangDiemFiles.length == 0) return;
 
-            // Pre-load existing ma_giang_vien và ma_sinh_vien
-            java.util.Set<String> existingGv = new java.util.HashSet<>();
+            // Lấy danh sách giảng viên và sinh viên
+            Set<String> existingGv = new HashSet<>();
             giangVienRepo.findAll().forEach(gv -> existingGv.add(gv.getMaGiangVien()));
-            java.util.Set<String> existingSv = new java.util.HashSet<>();
+            Set<String> existingSv = new HashSet<>();
             sinhVienRepo.findAll().forEach(sv -> existingSv.add(sv.getMaSinhVien()));
 
-            // Pass 1: scan all files để collect unique ma_giang_vien chưa có
-            java.util.Set<String> newGvCodes = new java.util.HashSet<>();
+            Set<String> newGvCodes = new HashSet<>();
             for (java.io.File bdFile : bangDiemFiles) {
                 String msv = bdFile.getName().replace("bangdiem_", "").replace(".json", "");
                 if (!existingSv.contains(msv)) continue;
@@ -376,7 +339,7 @@ public class DataSeeder implements CommandLineRunner {
                     }
                 } catch (Exception ignore) {}
             }
-            // Bulk insert placeholder GV trước khi insert bang_diem
+
             for (String maGv : newGvCodes) {
                 GiangVien placeholder = GiangVien.builder()
                         .maGiangVien(maGv)

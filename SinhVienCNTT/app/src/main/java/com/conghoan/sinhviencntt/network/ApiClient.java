@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    // Dùng 10.0.2.2 cho emulator, thay bằng IP thật cho device
+    // Dùng 10.0.2.2 cho máy ảo, thay bằng IP thật cho máy thật
     private static final String BASE_URL = "http://10.0.2.2:8085/";
     private static ApiService apiService;
 

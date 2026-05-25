@@ -190,16 +190,16 @@
 
                 <!-- Tạo tài khoản -->
                 <TextView
-                    android:id="@+id/btn_tao_tai_khoan"
+                    android:id="@+id/tv_password_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:padding="8dp"
-                    android:text="Chưa có tài khoản? Tạo tài khoản"
+                    android:text="Lấy mật khẩu đăng nhập lần đầu tại đây!"
                     android:textAlignment="center"
                     android:textColor="@color/accent"
                     android:textSize="14sp"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
             </LinearLayout>
 

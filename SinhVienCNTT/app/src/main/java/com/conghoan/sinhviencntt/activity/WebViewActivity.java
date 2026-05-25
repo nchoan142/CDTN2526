@@ -68,6 +68,8 @@ public class WebViewActivity extends AppCompatActivity {
         }
     }
 
+    // Thay các chuỗi token, mã sinh viên trong url thành token và mã sinh viên hiện tại
+    // để dùng cho các API sau này. VD: http://101.99.23.5/api/v1/chuongTrinhHocBangDiem/{msv}
     private String replacePlaceholders(String url) {
         SharedPreferences prefs = getSharedPreferences("SinhVienCNTT", MODE_PRIVATE);
         String token = prefs.getString("token", "");

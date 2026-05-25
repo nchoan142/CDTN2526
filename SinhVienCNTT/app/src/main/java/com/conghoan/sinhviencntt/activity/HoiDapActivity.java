@@ -49,6 +49,7 @@ public class HoiDapActivity extends AppCompatActivity {
         loadHoiDap();
     }
 
+    // Lấy danh sách câu hỏi của sinh viên và hiển thị lên view
     private void loadHoiDap() {
         SharedPreferences prefs = getSharedPreferences("SinhVienCNTT", MODE_PRIVATE);
         String msv = prefs.getString("msv", "");
@@ -56,7 +57,7 @@ public class HoiDapActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<HoiDapModel>> call, Response<List<HoiDapModel>> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
-                    displayHoiDap(response.body());
+                    displayHoiDap(response.body()); // Hiển thị câu hỏi của sinh viên và câu trả lời của CVHT
                 }
             }
 
@@ -105,12 +106,31 @@ public class HoiDapActivity extends AppCompatActivity {
             qRow.addView(tvName);
 
             // Trạng thái
-            if (!Boolean.TRUE.equals(hd.getDaDuyet())) {
-                TextView badge = new TextView(this);
-                badge.setText("  Chờ duyệt");
-                badge.setTextColor(getResources().getColor(R.color.card_bangdiem_icon));
+            TextView badge = new TextView(this);
+            if (!hd.getDaDuyet()) {
+                badge.setText("  Chờ duyệt ");
+                badge.setTextColor(getResources().getColor(R.color.card_hoidap_pending));
                 badge.setTextSize(10);
                 qRow.addView(badge);
+            } else {
+                badge.setText("  Đã duyệt ");
+                badge.setTextColor(getResources().getColor(R.color.card_hoidap_confirm));
+                badge.setTextSize(10);
+                qRow.addView(badge);
+            }
+
+            // Ngày hỏi
+            TextView daySend = new TextView(this);
+            if (!hd.getDaDuyet()) {
+                daySend.setText(hd.getNgayHoi());
+                daySend.setTextColor(getResources().getColor(R.color.text_hint));
+                daySend.setTextSize(10);
+                qRow.addView(daySend);
+            } else {
+                daySend.setText(hd.getNgayHoi());
+                daySend.setTextColor(getResources().getColor(R.color.text_hint));
+                daySend.setTextSize(10);
+                qRow.addView(daySend);
             }
 
             inner.addView(qRow);
@@ -148,11 +168,18 @@ public class HoiDapActivity extends AppCompatActivity {
                 tvAnswerer.setTypeface(null, android.graphics.Typeface.BOLD);
                 aRow.addView(tvAnswerer);
 
+                // Ngày trả lời
+                TextView dayResponse = new TextView(this);
+                dayResponse.setText(" " + hd.getNgayHoi());
+                dayResponse.setTextColor(getResources().getColor(R.color.text_hint));
+                dayResponse.setTextSize(10);
+                aRow.addView(dayResponse);
+
                 inner.addView(aRow);
 
                 TextView tvAnswer = new TextView(this);
                 tvAnswer.setText(hd.getCauTraLoi());
-                tvAnswer.setTextColor(getResources().getColor(R.color.text_secondary));
+                tvAnswer.setTextColor(getResources().getColor(R.color.text_primary));
                 tvAnswer.setTextSize(13);
                 tvAnswer.setPadding(64, 0, 0, 0);
                 inner.addView(tvAnswer);
@@ -191,6 +218,7 @@ public class HoiDapActivity extends AppCompatActivity {
                 .show();
     }
 
+    // Tạo mới và lưu câu hỏi của sinh viên vào database
     private void sendQuestion(String cauHoi) {
         SharedPreferences prefs = getSharedPreferences("SinhVienCNTT", MODE_PRIVATE);
         String msv = prefs.getString("msv", "");
@@ -206,7 +234,7 @@ public class HoiDapActivity extends AppCompatActivity {
             public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 0) {
                     Toast.makeText(HoiDapActivity.this, "Câu hỏi đã được gửi, chờ duyệt!", Toast.LENGTH_SHORT).show();
-                    loadHoiDap(); // Reload danh sách
+                    loadHoiDap(); // Load lại danh sách câu hỏi sau khi đã lưu vào database
                 } else {
                     Toast.makeText(HoiDapActivity.this, "Gửi thất bại, thử lại sau", Toast.LENGTH_SHORT).show();
                 }

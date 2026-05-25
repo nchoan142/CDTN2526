@@ -57,39 +57,41 @@ public class LoginActivity extends AppCompatActivity {
     private void setupClickListeners() {
         btnLogin.setOnClickListener(v -> attemptLogin());
 
-        TextView btnTaoTaiKhoan = findViewById(R.id.btn_tao_tai_khoan);
-        btnTaoTaiKhoan.setOnClickListener(v -> showTaoTaiKhoanDialog());
+        TextView tvGetPassword = findViewById(R.id.tv_password_login);
+        tvGetPassword.setOnClickListener(v -> showGetPasswordDialog());
     }
 
-    private void showTaoTaiKhoanDialog() {
+    // Hiển thị hộp thoại (dialog) lấy mật khẩu
+    private void showGetPasswordDialog() {
         EditText input = new EditText(this);
-        input.setHint("Nhập mã sinh viên (VD: A38200)");
+        input.setHint("Nhập mã sinh viên");
         input.setPadding(40, 20, 40, 20);
         input.setInputType(android.text.InputType.TYPE_CLASS_TEXT);
 
         new AlertDialog.Builder(this)
-                .setTitle("Tạo tài khoản")
+                .setTitle("Lấy mật khẩu đăng nhập!")
                 .setMessage("Nhập mã sinh viên, mật khẩu sẽ được gửi về email của bạn.")
                 .setView(input)
-                .setPositiveButton("Tạo", (dialog, which) -> {
+                .setPositiveButton("Gửi", (dialog, which) -> {
                     String msv = input.getText().toString().trim();
                     if (msv.isEmpty()) {
                         Toast.makeText(this, "Vui lòng nhập mã sinh viên", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    taoTaiKhoan(msv);
+                    sendPassword(msv);
                 })
                 .setNegativeButton("Huỷ", null)
                 .show();
     }
 
-    private void taoTaiKhoan(String msv) {
+    // Gửi mật khẩu về email khi sinh viên đăng nhập lần đầu
+    private void sendPassword(String msv) {
         Map<String, String> body = new HashMap<>();
         body.put("maSinhVien", msv);
 
-        Toast.makeText(this, "Đang tạo tài khoản...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Đang gửi mật khẩu...", Toast.LENGTH_SHORT).show();
 
-        ApiClient.getApiService(this).taoTaiKhoan(body).enqueue(new Callback<ApiResponse<String>>() {
+        ApiClient.getApiService(this).getPassword(body).enqueue(new Callback<ApiResponse<String>>() {
             @Override
             public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 0) {
@@ -99,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                             .setPositiveButton("OK", null)
                             .show();
                 } else {
-                    String msg = "Tạo tài khoản thất bại";
+                    String msg = "Gửi mật khẩu về email thất bại";
                     if (response.body() != null) {
                         msg = response.body().getMessage();
                     } else if (response.errorBody() != null) {
@@ -148,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                 btnLogin.setEnabled(true);
                 btnLogin.setText(getString(R.string.btn_login));
 
+                // Lưu các thông tin của sinh viên vào SharedPreference
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 0) {
                     LoginResponse data = response.body().getData();
                     SharedPreferences prefs = getSharedPreferences("SinhVienCNTT", MODE_PRIVATE);
@@ -185,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<ApiResponse<LoginResponse>> call, Throwable t) {
                 btnLogin.setEnabled(true);
                 btnLogin.setText(getString(R.string.btn_login));
-                // Fallback: đăng nhập offline nếu backend không khả dụng
+                // Đăng nhập offline nếu không có kết nối Internet
                 loginOffline(msv);
             }
         });

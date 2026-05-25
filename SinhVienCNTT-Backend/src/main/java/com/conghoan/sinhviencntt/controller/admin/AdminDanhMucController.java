@@ -48,13 +48,36 @@ public class AdminDanhMucController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("danhMuc") DanhMuc danhMuc, RedirectAttributes ra, Model model) {
+        // Kiểm tra xem mã màn hình đã tồn tại chưa
+        if (danhMuc.getMaManHinh() != null) {
+            boolean isDuplicate = false;
+            if (danhMuc.getId() == null) {
+                isDuplicate = repo.existsByMaManHinh(danhMuc.getMaManHinh());
+            } else {
+                DanhMuc existing = repo.findById(danhMuc.getId()).orElse(null);
+                if (existing != null && !danhMuc.getMaManHinh().equals(existing.getMaManHinh())) {
+                    isDuplicate = repo.existsByMaManHinh(danhMuc.getMaManHinh());
+                }
+            }
+            
+            if (isDuplicate) {
+                model.addAttribute("error", "Danh mục đã tồn tại!");
+                return "admin/danhmuc-form";
+            }
+        }
+
         // Kiểm tra xem người quản lý (giảng viên) có tồn tại không
         if (danhMuc.getNguoiQuanLy() != null) {
             boolean giangVienExists = giangVienRepo.existsByMaGiangVien(danhMuc.getNguoiQuanLy());
-            
+
             if (!giangVienExists) {
-                model.addAttribute("error", "Người quản lý '" + danhMuc.getNguoiQuanLy() + "' không tồn tại!");
-                return "admin/danhmuc-form";
+                if (danhMuc.getNguoiQuanLy().equalsIgnoreCase("admin") ) {
+                    model.addAttribute("error", "Admin không quản lý danh mục!");
+                    return "admin/danhmuc-form";
+                } else {
+                    model.addAttribute("error", "Người quản lý '" + danhMuc.getNguoiQuanLy() + "' không tồn tại!");
+                    return "admin/danhmuc-form";
+                }
             }
         }
         

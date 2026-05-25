@@ -5,7 +5,9 @@ public class ThongBaoModel {
     private String tieuDe;
     private String noiDung;
     private String nguoiDang;
+    private String nguoiGui;
     private String doiTuong;
+    private String ngayDang;
     private String ngayGui;
     private Boolean ghim;
 
@@ -13,7 +15,9 @@ public class ThongBaoModel {
     public String getTieuDe() { return tieuDe; }
     public String getNoiDung() { return noiDung; }
     public String getNguoiDang() { return nguoiDang; }
-    public String getDoiTuong() { return doiTuong; }
+    public String getNguoiGui() { return nguoiGui; }
     public String getNgayGui() { return ngayGui; }
+    public String getDoiTuong() { return doiTuong; }
+    public String getNgayDang() { return ngayDang; }
     public Boolean getGhim() { return ghim; }
 }

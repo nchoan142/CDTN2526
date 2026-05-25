@@ -14,11 +14,8 @@ public interface ApiService {
     @POST("api/auth/login")
     Call<ApiResponse<LoginResponse>> login(@Body Map<String, String> body);
 
-    @POST("api/auth/register")
-    Call<ApiResponse<String>> register(@Body Map<String, String> body);
-
-    @POST("api/auth/tao-tai-khoan")
-    Call<ApiResponse<String>> taoTaiKhoan(@Body Map<String, String> body);
+    @POST("api/auth/password")
+    Call<ApiResponse<String>> getPassword(@Body Map<String, String> body);
 
     @POST("api/auth/change-password")
     Call<ApiResponse<String>> changePassword(@Body Map<String, String> body);

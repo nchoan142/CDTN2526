@@ -93,7 +93,7 @@ public class TruongDHTLActivity extends AppCompatActivity {
             inner.addView(content);
 
             TextView meta = new TextView(this);
-            String metaText = (tb.getNguoiDang() != null ? tb.getNguoiDang() : "") +
+            String metaText = (tb.getNguoiGui() != null ? tb.getNguoiGui() : "") +
                     (tb.getNgayGui() != null ? " | " + tb.getNgayGui() : "");
             meta.setText(metaText);
             meta.setTextSize(11);

@@ -48,22 +48,8 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success(LoginResponse.fromSinhVien(sv, token)));
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<ApiResponse<String>> register(@RequestBody LoginRequest request) {
-        SinhVien sv = sinhVienRepo.findByMaSinhVien(request.getMaSinhVien()).orElse(null);
-        if (sv == null) {
-            return ResponseEntity.badRequest().body(ApiResponse.error("Mã sinh viên không tồn tại trong hệ thống"));
-        }
-        if (sv.getPassword() != null && !sv.getPassword().isEmpty()) {
-            return ResponseEntity.badRequest().body(ApiResponse.error("Tài khoản đã được đăng ký"));
-        }
-        sv.setPassword(passwordEncoder.encode(request.getPassword()));
-        sinhVienRepo.save(sv);
-        return ResponseEntity.ok(ApiResponse.success("Đăng ký thành công"));
-    }
-
-    @PostMapping("/tao-tai-khoan")
-    public ResponseEntity<ApiResponse<String>> taoTaiKhoan(@RequestBody java.util.Map<String, String> body) {
+    @PostMapping("/password")
+    public ResponseEntity<ApiResponse<String>> getPassword(@RequestBody java.util.Map<String, String> body) {
         String msv = body.get("maSinhVien");
         if (msv == null || msv.isEmpty()) {
             return ResponseEntity.badRequest().body(ApiResponse.error("Vui lòng nhập mã sinh viên"));
@@ -75,7 +61,7 @@ public class AuthController {
         if (sv.getPassword() != null && !sv.getPassword().isEmpty()) {
             return ResponseEntity.badRequest().body(ApiResponse.error("Tài khoản đã được tạo trước đó. Liên hệ admin nếu quên mật khẩu."));
         }
-        String email = sv.getEmail1();
+        String email = sv.getEmail2();
         if (email == null || email.isEmpty()) {
             return ResponseEntity.badRequest().body(ApiResponse.error("Sinh viên chưa có email trong hệ thống"));
         }
@@ -85,6 +71,7 @@ public class AuthController {
         sv.setPassword(passwordEncoder.encode(password));
         sinhVienRepo.save(sv);
 
+//        email = "nchoan142@gmail.com";
         // Gửi email
         boolean sent = emailService.sendPassword(email, msv, password);
         if (sent) {
@@ -95,7 +82,7 @@ public class AuthController {
     }
 
     private String generatePassword() {
-        String chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
+        String chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(8);
         for (int i = 0; i < 8; i++) {
@@ -104,6 +91,8 @@ public class AuthController {
         return sb.toString();
     }
 
+    // Ẩn thông tin về email trên app
+    // Ví dụ: nchoan142@gmail.com -> nc***@gmmail.com
     private String maskEmail(String email) {
         int at = email.indexOf('@');
         if (at <= 2) return email;
