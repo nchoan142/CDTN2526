@@ -80,6 +80,8 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         addInfoRow("Lớp", getStringValue(data, "lop"));
         addInfoRow("Lớp chuyên ngành", getStringValue(data, "lopChuyenNganh"));
         addInfoRow("Ngành", getStringValue(data, "nganh"));
+        addInfoRow("Khoá nhập học", getStringValue(data, "khoaNhapHoc"));
+        addInfoRow("Năm nhập học", getStringValue(data, "nhapHoc"));
         addInfoRow("Email 1", getStringValue(data, "email1"));
         addInfoRow("Email 2", getStringValue(data, "email2"));
         addInfoRow("Điện thoại 1", getStringValue(data, "dienThoai1"));

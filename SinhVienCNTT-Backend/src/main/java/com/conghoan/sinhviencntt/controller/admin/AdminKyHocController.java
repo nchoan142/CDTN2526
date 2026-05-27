@@ -1,6 +1,8 @@
 package com.conghoan.sinhviencntt.controller.admin;
 
+import com.conghoan.sinhviencntt.entity.GiangVien;
 import com.conghoan.sinhviencntt.entity.KyHoc;
+import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import com.conghoan.sinhviencntt.repository.KyHocRepository;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin/kyhoc")
@@ -20,13 +24,35 @@ public class AdminKyHocController {
     }
 
     private final KyHocRepository repo;
+    private final GiangVienRepository giangVienRepo;
 
-    public AdminKyHocController(KyHocRepository repo) {
+    public AdminKyHocController(KyHocRepository repo, GiangVienRepository giangVienRepo) {
         this.repo = repo;
+        this.giangVienRepo = giangVienRepo;
     }
 
     @GetMapping
-    public String list(Model model) {
+    public String list(Model model, Principal principal) {
+        boolean canEdit = false;
+        if (principal != null) {
+            String username = principal.getName();
+            // Kiểm tra nếu là tài khoản admin mặc định
+            if (username.equalsIgnoreCase("admin")) {
+                canEdit = true;
+            } else {
+                // Nếu là giảng viên, kiểm tra quyền Quản trị hoặc Thư ký
+                GiangVien gv = giangVienRepo.findByMaGiangVien(username).orElse(null);
+                if (gv != null) {
+                    boolean isAdmin = Boolean.TRUE.equals(gv.getRoleQuanTri());
+                    boolean isThuKy = Boolean.TRUE.equals(gv.getRoleThuKy());
+                    if (isAdmin || isThuKy) {
+                        canEdit = true;
+                    }
+                }
+            }
+        }
+        
+        model.addAttribute("canEdit", canEdit);
         model.addAttribute("list", repo.findAll());
         return "admin/kyhoc-list";
     }

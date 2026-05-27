@@ -11,7 +11,7 @@
             <form method="get" class="row g-2">
                 <div class="col-md-8"><input type="text" name="msv" class="form-control" placeholder="Nhập mã sinh viên để tra cứu TKB..." th:value="${msv}"/></div>
                 <div class="col-md-2"><button class="btn btn-primary w-100"><i class="bi bi-search"></i> Tra cứu</button></div>
-                <div class="col-md-2"><a th:if="${msv}" th:href="@{/admin/tkb/add(msv=${msv})}" class="btn btn-success w-100"><i class="bi bi-plus-lg"></i> Thêm mới</a></div>
+                <div class="col-md-2"><a th:if="${msv != null and canEdit}" th:href="@{/admin/tkb/add(msv=${msv})}" class="btn btn-success w-100"><i class="bi bi-plus-lg"></i> Thêm mới</a></div>
             </form>
         </div>
     </div>
@@ -38,7 +38,7 @@
                             <th>Giảng viên</th>
                             <th>Phòng</th>
                             <th>Kỳ</th>
-                            <th>Thao tác</th>
+                            <th th:if="${canEdit}">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
                             <td th:text="${t.tenGiangVien}"></td>
                             <td th:text="${t.phongHoc}"></td>
                             <td><small th:text="${t.maKy}"></small></td>
-                            <td>
+                            <td th:if="${canEdit}">
                                 <a th:href="@{/admin/tkb/edit/{id}(id=${t.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>
                                 <a th:href="@{/admin/tkb/delete/{id}(id=${t.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
                             </td>

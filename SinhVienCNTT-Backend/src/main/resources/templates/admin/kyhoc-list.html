@@ -6,7 +6,7 @@
 <div class="main-content">
     <div class="page-header d-flex justify-content-between align-items-center">
         <h2><i class="bi bi-calendar3"></i> Quản lý Kỳ học</h2>
-        <a href="/admin/kyhoc/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
+        <a th:if="${canEdit}" href="/admin/kyhoc/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
     </div>
     <div th:replace="~{fragments/layout :: alert}"></div>
     <div class="card border-0 shadow-sm">
@@ -22,7 +22,7 @@
                             <th>Bắt đầu</th>
                             <th>Kết thúc</th>
                             <th>Mặc định</th>
-                            <th>Thao tác</th>
+                            <th th:if="${canEdit}">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +37,7 @@
                                 <span th:if="${ky.macDinh == 1}" class="badge bg-success">Hiện tại</span>
                                 <a th:if="${ky.macDinh != 1}" th:href="@{/admin/kyhoc/macdinh/{id}(id=${ky.id})}" class="btn btn-sm btn-outline-success btn-action">Đặt mặc định</a>
                             </td>
-                            <td>
+                            <td th:if="${canEdit}">
                                 <a th:href="@{/admin/kyhoc/edit/{id}(id=${ky.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>
                                 <a th:href="@{/admin/kyhoc/delete/{id}(id=${ky.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
                             </td>
