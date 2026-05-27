@@ -27,15 +27,15 @@ public class GiangVien {
     private String hocHam;
     private String hocVi;
     @Column(name = "giang_vien")
-    private Integer roleGiangVien;
+    private Boolean roleGiangVien;
     private Integer coHuu1;
     private Integer coHuu2;
     @Column(name = "thinh_giang")
-    private Integer roleThinhGiang;
+    private Boolean roleThinhGiang;
     @Column(name = "thu_ky")
-    private Integer roleThuKy;
+    private Boolean roleThuKy;
     @Column(name = "quan_tri")
-    private Integer roleQuanTri;
+    private Boolean roleQuanTri;
     private Integer trangThai;
 
     @ManyToOne(fetch = FetchType.LAZY)

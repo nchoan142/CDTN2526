@@ -1,6 +1,7 @@
 package com.conghoan.sinhviencntt.controller.admin;
 
 import com.conghoan.sinhviencntt.entity.DanhMuc;
+import com.conghoan.sinhviencntt.entity.GiangVien;
 import com.conghoan.sinhviencntt.repository.DanhMucRepository;
 import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -66,19 +67,26 @@ public class AdminDanhMucController {
             }
         }
 
-        // Kiểm tra xem người quản lý (giảng viên) có tồn tại không
-        if (danhMuc.getNguoiQuanLy() != null) {
-            boolean giangVienExists = giangVienRepo.existsByMaGiangVien(danhMuc.getNguoiQuanLy());
+        // Kiểm tra người quản lý có tồn tại và có quyền hay không
+        String nguoiQuanLy = danhMuc.getNguoiQuanLy();
+        if (nguoiQuanLy != null) {
 
-            if (!giangVienExists) {
-                if (danhMuc.getNguoiQuanLy().equalsIgnoreCase("admin") ) {
-                    model.addAttribute("error", "Admin không quản lý danh mục!");
-                    return "admin/danhmuc-form";
-                } else {
-                    model.addAttribute("error", "Người quản lý '" + danhMuc.getNguoiQuanLy() + "' không tồn tại!");
+            GiangVien gv = giangVienRepo.findByMaGiangVien(nguoiQuanLy).orElse(null);
+
+            if (gv == null) {
+                model.addAttribute("error", "Giảng viên '" + nguoiQuanLy + "' không tồn tại trong hệ thống!");
+                return "admin/danhmuc-form";
+            } else {
+                // Kiểm tra xem giảng viên có là Admin hoặc Thư ký hay không
+                boolean isAdmin = gv.getRoleQuanTri() != null;
+                boolean isThuKy = gv.getRoleThuKy() != null;
+
+                if (!isAdmin && !isThuKy) {
+                    model.addAttribute("error", "Người quản lý phải là Giảng viên có quyền Admin hoặc Thư ký");
                     return "admin/danhmuc-form";
                 }
             }
+
         }
         
         repo.save(danhMuc);

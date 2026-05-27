@@ -46,7 +46,7 @@ public class AdminBangDiemController {
     @GetMapping("/add")
     public String addForm(@RequestParam(required = false) String msv, Model model) {
         BangDiem bd = new BangDiem();
-        if (msv != null) bd.setMaSinhVien(msv);
+        if (msv != null) bd.setMaSinhVien(msv); // điền sẵn mã sinh viên khi hiển thị form thêm mới
         model.addAttribute("bangDiem", bd);
         model.addAttribute("isNew", true);
         return "admin/bangdiem-form";

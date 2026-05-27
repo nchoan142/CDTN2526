@@ -47,10 +47,10 @@
                             <td th:text="${gv.email1}"></td>
                             <td th:text="${gv.dienThoai}"></td>
                             <td>
-                                <span th:if="${gv.roleQuanTri == 1}" class="badge bg-danger">Admin</span>
-                                <span th:if="${gv.roleGiangVien == 1}" class="badge bg-info">GV</span>
-                                <span th:if="${gv.roleThuKy == 1}" class="badge bg-warning">TK</span>
-                                <span th:if="${gv.roleThinhGiang == 1}" class="badge bg-warning">TG</span>
+                                <span th:if="${gv.roleQuanTri == true}" class="badge bg-danger">Admin</span>
+                                <span th:if="${gv.roleGiangVien == true}" class="badge bg-info">GV</span>
+                                <span th:if="${gv.roleThuKy == true}" class="badge bg-warning">TK</span>
+                                <span th:if="${gv.roleThinhGiang == true}" class="badge bg-warning">TG</span>
                             </td>
                             <td>
                                 <a th:href="@{/admin/giangvien/edit/{id}(id=${gv.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>

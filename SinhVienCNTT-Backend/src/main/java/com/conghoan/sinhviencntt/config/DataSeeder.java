@@ -289,12 +289,16 @@ public class DataSeeder implements CommandLineRunner {
                 gv.setGhiChu(getStr(obj, "ghi_chu"));
                 gv.setHocHam(getStr(obj, "hoc_ham"));
                 gv.setHocVi(getStr(obj, "hoc_vi"));
-                gv.setRoleGiangVien(getInt(obj, "giang_vien"));
+                Integer gvInt = getInt(obj, "giang_vien");
+                gv.setRoleGiangVien(gvInt != null && gvInt == 1);
+                Integer tgInt = getInt(obj, "thinh_giang");
+                gv.setRoleThinhGiang(tgInt != null && tgInt == 1);
+                Integer tkInt = getInt(obj, "thu_ky");
+                gv.setRoleThuKy(tkInt != null && tkInt == 1);
+                Integer qtInt = getInt(obj, "quan_tri");
+                gv.setRoleQuanTri(qtInt != null && qtInt == 1);
                 gv.setCoHuu1(getInt(obj, "co_huu1"));
                 gv.setCoHuu2(getInt(obj, "co_huu2"));
-                gv.setRoleThinhGiang(getInt(obj, "thinh_giang"));
-                gv.setRoleThuKy(getInt(obj, "thu_ky"));
-                gv.setRoleQuanTri(getInt(obj, "quan_tri"));
                 gv.setTrangThai(getInt(obj, "trang_thai"));
 
                 giangVienRepo.save(gv);
