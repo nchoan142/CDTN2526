@@ -11,6 +11,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/admin/danhmuc")
 public class AdminDanhMucController {
@@ -30,7 +32,27 @@ public class AdminDanhMucController {
     }
 
     @GetMapping
-    public String list(Model model) {
+    public String list(Model model, Principal principal) { // sử dụng Principal để tự động lấy tên đăng nhập của user
+        boolean canEdit = false;
+        if (principal != null) {
+            String username = principal.getName();
+            // Kiểm tra nếu là tài khoản admin mặc định
+            if (username.equalsIgnoreCase("admin")) {
+                canEdit = true;
+            } else {
+                // Nếu là giảng viên, kiểm tra quyền Quản trị hoặc Thư ký
+                GiangVien gv = giangVienRepo.findByMaGiangVien(username).orElse(null);
+                if (gv != null) {
+                    boolean isAdmin = Boolean.TRUE.equals(gv.getRoleQuanTri());
+                    boolean isThuKy = Boolean.TRUE.equals(gv.getRoleThuKy());
+                    if (isAdmin || isThuKy) {
+                        canEdit = true;
+                    }
+                }
+            }
+        }
+        
+        model.addAttribute("canEdit", canEdit);
         model.addAttribute("list", repo.findAllByOrderBySttAsc());
         return "admin/danhmuc-list";
     }
@@ -78,8 +100,8 @@ public class AdminDanhMucController {
                 return "admin/danhmuc-form";
             } else {
                 // Kiểm tra xem giảng viên có là Admin hoặc Thư ký hay không
-                boolean isAdmin = gv.getRoleQuanTri() != null;
-                boolean isThuKy = gv.getRoleThuKy() != null;
+                boolean isAdmin = Boolean.TRUE.equals(gv.getRoleQuanTri());
+                boolean isThuKy = Boolean.TRUE.equals(gv.getRoleThuKy());
 
                 if (!isAdmin && !isThuKy) {
                     model.addAttribute("error", "Người quản lý phải là Giảng viên có quyền Admin hoặc Thư ký");

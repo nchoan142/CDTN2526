@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -36,21 +37,41 @@ public class AdminGiangVienController {
     }
 
     @GetMapping
-    public String list(@RequestParam(required = false) String search, Model model) {
+    public String list(@RequestParam(required = false) String search, Model model, Principal principal) {
+        boolean canEdit = false;
+        if (principal != null) {
+            String username = principal.getName();
+            // Kiểm tra nếu là tài khoản admin mặc định
+            if (username.equalsIgnoreCase("admin")) {
+                canEdit = true;
+            } else {
+                // Nếu là giảng viên, kiểm tra quyền Quản trị hoặc Thư ký
+                GiangVien gv = repo.findByMaGiangVien(username).orElse(null);
+                if (gv != null) {
+                    boolean isAdmin = Boolean.TRUE.equals(gv.getRoleQuanTri());
+                    boolean isThuKy = Boolean.TRUE.equals(gv.getRoleThuKy());
+                    if (isAdmin || isThuKy) {
+                        canEdit = true;
+                    }
+                }
+            }
+        }
+        model.addAttribute("canEdit", canEdit);
+
         if (search != null && !search.trim().isEmpty()) {
             String keyword = search.trim().toLowerCase();
 
             List<GiangVien> filteredList = repo.findByTenContainingIgnoreCaseOrMaGiangVienContainingIgnoreCase(keyword, keyword)
                     .stream()
-                    .filter(sv -> {
+                    .filter(gv -> {
                         boolean matchMaGV = false;
                         boolean matchTenGV = false;
                         // Lọc giảng viên theo mã giảng viên hoặc tên giảng viên
-                        if (sv.getMaGiangVien() != null && sv.getMaGiangVien().toLowerCase().contains(keyword)) {
+                        if (gv.getMaGiangVien() != null && gv.getMaGiangVien().toLowerCase().contains(keyword)) {
                             matchMaGV = true;
                         }
-                        if (sv.getTen() != null) {
-                            String ten = sv.getTen().toLowerCase();
+                        if (gv.getTen() != null) {
+                            String ten = gv.getTen().toLowerCase();
                             if (ten.endsWith(" " + keyword)) {
                                 matchTenGV = true;
                             }

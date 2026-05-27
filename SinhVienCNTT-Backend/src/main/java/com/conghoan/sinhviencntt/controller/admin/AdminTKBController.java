@@ -1,5 +1,6 @@
 package com.conghoan.sinhviencntt.controller.admin;
 
+import com.conghoan.sinhviencntt.entity.GiangVien;
 import com.conghoan.sinhviencntt.entity.ThoiKhoaBieu;
 import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import com.conghoan.sinhviencntt.repository.KyHocRepository;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin/tkb")
@@ -35,7 +38,28 @@ public class AdminTKBController {
     }
 
     @GetMapping
-    public String list(@RequestParam(required = false) String msv, Model model) {
+    public String list(@RequestParam(required = false) String msv, Model model, Principal principal) {
+        boolean canEdit = false;
+        if (principal != null) {
+            String username = principal.getName();
+            // Kiểm tra nếu là tài khoản admin mặc định
+            if (username.equalsIgnoreCase("admin")) {
+                canEdit = true;
+            } else {
+                // Nếu là giảng viên, kiểm tra quyền Quản trị hoặc Thư ký
+                GiangVien gv = giangVienRepo.findByMaGiangVien(username).orElse(null);
+                if (gv != null) {
+                    boolean isAdmin = Boolean.TRUE.equals(gv.getRoleQuanTri());
+                    boolean isThuKy = Boolean.TRUE.equals(gv.getRoleThuKy());
+                    
+                    if (isAdmin || isThuKy) {
+                        canEdit = true;
+                    }
+                }
+            }
+        }
+        model.addAttribute("canEdit", canEdit);
+
         if (msv != null && !msv.isEmpty()) {
             model.addAttribute("list", repo.findByMaSinhVienOrderByThuAscTietBatDauAsc(msv));
             model.addAttribute("sinhVien", svRepo.findByMaSinhVien(msv).orElse(null));

@@ -1,6 +1,7 @@
 package com.conghoan.sinhviencntt.controller.admin;
 
 import com.conghoan.sinhviencntt.entity.CoVanHocTap;
+import com.conghoan.sinhviencntt.entity.GiangVien;
 import com.conghoan.sinhviencntt.repository.CoVanHocTapRepository;
 import com.conghoan.sinhviencntt.repository.GiangVienRepository;
 import com.conghoan.sinhviencntt.repository.KyHocRepository;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -37,7 +39,28 @@ public class AdminCoVanHocTapController {
     public String list(@RequestParam(required = false) String maKy,
                        @RequestParam(required = false) String maLop,
                        @RequestParam(required = false) String maGv,
-                       Model model) {
+                       Model model, Principal principal) {
+        boolean canEdit = false;
+        if (principal != null) {
+            String username = principal.getName();
+            // Kiểm tra nếu là tài khoản admin mặc định
+            if (username.equalsIgnoreCase("admin")) {
+                canEdit = true;
+            } else {
+                // Nếu là giảng viên, kiểm tra quyền Quản trị hoặc Thư ký
+                GiangVien gv = giangVienRepo.findByMaGiangVien(username).orElse(null);
+                if (gv != null) {
+                    boolean isAdmin = Boolean.TRUE.equals(gv.getRoleQuanTri());
+                    boolean isThuKy = Boolean.TRUE.equals(gv.getRoleThuKy());
+                    
+                    if (isAdmin || isThuKy) {
+                        canEdit = true;
+                    }
+                }
+            }
+        }
+        model.addAttribute("canEdit", canEdit);
+
         List<CoVanHocTap> list;
         if (maGv != null && !maGv.isEmpty()) {
             list = repo.findByMaGiangVien(maGv);

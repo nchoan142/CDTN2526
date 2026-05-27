@@ -6,7 +6,7 @@
 <div class="main-content">
     <div class="page-header d-flex justify-content-between align-items-center">
         <h2><i class="bi bi-grid"></i> Quản lý Danh mục</h2>
-        <a href="/admin/danhmuc/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
+        <a th:if="${canEdit}" href="/admin/danhmuc/add" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
     </div>
     <div th:replace="~{fragments/layout :: alert}"></div>
     <div class="card border-0 shadow-sm">
@@ -23,7 +23,7 @@
                             <th>Mã MH / Link</th>
                             <th>Người QL</th>
                             <th>Đang dùng</th>
-                            <th>Thao tác</th>
+                            <th th:if="${canEdit}">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@
                             </td>
                             <td th:text="${dm.nguoiQuanLy}"></td>
                             <td><span th:if="${dm.dangDung}" class="badge bg-success">On</span><span th:unless="${dm.dangDung}" class="badge bg-secondary">Off</span></td>
-                            <td>
+                            <td th:if="${canEdit}">
                                 <a th:href="@{/admin/danhmuc/edit/{id}(id=${dm.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>
                                 <a th:href="@{/admin/danhmuc/delete/{id}(id=${dm.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
                             </td>
