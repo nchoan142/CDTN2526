@@ -21,7 +21,7 @@
                             <th>Năm học</th>
                             <th>Bắt đầu</th>
                             <th>Kết thúc</th>
-                            <th>Mặc định</th>
+                            <th th:if="${canEdit}">Mặc định</th>
                             <th th:if="${canEdit}">Thao tác</th>
                         </tr>
                     </thead>
@@ -33,7 +33,7 @@
                             <td th:text="${ky.maNam}"></td>
                             <td th:text="${ky.batDauKyHoc}"></td>
                             <td th:text="${ky.ketThucKyHoc}"></td>
-                            <td>
+                            <td th:if="${canEdit}">
                                 <span th:if="${ky.macDinh == 1}" class="badge bg-success">Hiện tại</span>
                                 <a th:if="${ky.macDinh != 1}" th:href="@{/admin/kyhoc/macdinh/{id}(id=${ky.id})}" class="btn btn-sm btn-outline-success btn-action">Đặt mặc định</a>
                             </td>
