@@ -4,6 +4,7 @@
 *.txt
 *.sh
 *.md
+generate_*.py
 
 # --- Ngoại lệ: giữ lại ---
 !taikhoan.txt

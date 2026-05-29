@@ -39,8 +39,12 @@ public class AdminGiangVienController {
     @GetMapping
     public String list(@RequestParam(required = false) String search, Model model, Principal principal) {
         boolean canEdit = false;
+        // Lưu username (Giảng viên hoặc admin tổng) đang đăng nhập
+        // Nếu giảng viên có role là "admin" hoặc "thư ký" thì sẽ không thể tự xóa chính mình
+        String currentUsername = "";
         if (principal != null) {
-            String username = principal.getName();
+            currentUsername = principal.getName();
+            String username = currentUsername;
             // Kiểm tra nếu là tài khoản admin mặc định
             if (username.equalsIgnoreCase("admin")) {
                 canEdit = true;
@@ -57,6 +61,7 @@ public class AdminGiangVienController {
             }
         }
         model.addAttribute("canEdit", canEdit);
+        model.addAttribute("currentUsername", currentUsername);
 
         if (search != null && !search.trim().isEmpty()) {
             String keyword = search.trim().toLowerCase();
