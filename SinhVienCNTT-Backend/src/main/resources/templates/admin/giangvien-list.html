@@ -54,7 +54,7 @@
                             </td>
                             <td th:if="${canEdit}">
                                 <a th:href="@{/admin/giangvien/edit/{id}(id=${gv.id})}" class="btn btn-sm btn-outline-primary btn-action"><i class="bi bi-pencil"></i></a>
-                                <a th:href="@{/admin/giangvien/delete/{id}(id=${gv.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
+                                <a th:if="${gv.maGiangVien != currentUsername}" th:href="@{/admin/giangvien/delete/{id}(id=${gv.id})}" class="btn btn-sm btn-outline-danger btn-action" onclick="return confirm('Xác nhận xoá?')"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                         <tr th:if="${#lists.isEmpty(list)}"><td colspan="9" class="text-center text-muted py-4">Không tìm thấy giảng viên nào</td></tr>
