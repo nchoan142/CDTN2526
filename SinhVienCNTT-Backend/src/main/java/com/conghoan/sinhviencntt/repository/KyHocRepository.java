@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface KyHocRepository extends JpaRepository<KyHoc, Long> {
     Optional<KyHoc> findByMaKy(String maKy);
-    Optional<KyHoc> findByMacDinh(Integer macDinh);
+    Optional<KyHoc> findByMacDinh(Boolean macDinh);
     boolean existsByMaKy(String maKy);
 }

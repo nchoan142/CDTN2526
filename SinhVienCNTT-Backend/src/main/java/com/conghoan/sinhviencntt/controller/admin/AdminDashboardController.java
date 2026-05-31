@@ -41,7 +41,7 @@ public class AdminDashboardController {
                 .tongHoiDapChuaDuyet(hoiDapRepo.findByDaDuyetFalseOrderByNgayHoiDesc().size())
                 .tongThongBao(thongBaoRepo.count())
                 .tongDanhMuc(danhMucRepo.count())
-                .kyHocHienTai(kyHocRepo.findByMacDinh(1).map(k -> k.getMaKy() + " - " + k.getTenKy()).orElse("Chưa thiết lập"))
+                .kyHocHienTai(kyHocRepo.findByMacDinh(true).map(k -> k.getMaKy() + " - " + k.getTenKy()).orElse("Chưa thiết lập"))
                 .build();
         model.addAttribute("stats", stats);
         return "admin/dashboard";

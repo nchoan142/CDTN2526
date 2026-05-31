@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -49,7 +50,7 @@ public class AuthController {
     }
 
     @PostMapping("/password")
-    public ResponseEntity<ApiResponse<String>> getPassword(@RequestBody java.util.Map<String, String> body) {
+    public ResponseEntity<ApiResponse<String>> getPassword(@RequestBody Map<String, String> body) {
         String msv = body.get("maSinhVien");
         if (msv == null || msv.isEmpty()) {
             return ResponseEntity.badRequest().body(ApiResponse.error("Vui lòng nhập mã sinh viên"));
@@ -102,7 +103,7 @@ public class AuthController {
     @PostMapping("/change-password")
     public ResponseEntity<ApiResponse<String>> changePassword(
             @RequestHeader("Authorization") String authHeader,
-            @RequestBody java.util.Map<String, String> body) {
+            @RequestBody Map<String, String> body) {
         String token = authHeader.replace("Bearer ", "");
         String msv = jwtUtil.getMaSinhVienFromToken(token);
         SinhVien sv = sinhVienRepo.findByMaSinhVien(msv).orElse(null);

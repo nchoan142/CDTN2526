@@ -31,5 +31,5 @@ public class SinhVien {
     private String dienThoai2;
     private String ghiChu;
     private String khoaNhapHoc;
-    private Integer trangThai;
+    private Boolean trangThai;
 }

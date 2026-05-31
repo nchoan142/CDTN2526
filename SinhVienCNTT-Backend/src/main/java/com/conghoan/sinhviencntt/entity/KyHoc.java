@@ -18,10 +18,5 @@ public class KyHoc {
     private String maNam;
     private String batDauKyHoc;
     private String ketThucKyHoc;
-    private String batDauChonLich;
-    private String ketThucChonLich;
-    private String batDauLapLich;
-    private String ketThucLapLich;
-    private String lastModify;
-    private Integer macDinh;
+    private Boolean macDinh;
 }

@@ -28,7 +28,7 @@ public class KyHocController {
 
     @GetMapping("/hientai")
     public ResponseEntity<?> getKyHienTai() {
-        return repo.findByMacDinh(1)
+        return repo.findByMacDinh(true)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
