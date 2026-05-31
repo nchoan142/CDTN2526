@@ -124,16 +124,18 @@ public class AdminSinhVienController {
                 if (sinhVien.getPassword() == null || sinhVien.getPassword().trim().isEmpty()) {
                     // Bỏ trống mật khẩu -> Lấy lại mật khẩu cũ lưu vào
                     sinhVien.setPassword(existingSinhVien.getPassword());
-                    System.out.println("Chạy nhánh if");
                 } else {
                     // Có nhập mật khẩu mới -> Mã hoá trước khi lưu
                     sinhVien.setPassword(passwordEncoder.encode(sinhVien.getPassword()));
-                    System.out.println("Chạy nhánh else");
                 }
             }
         } else {
+            sinhVien.setMaSinhVien(sinhVien.getMaSinhVien().toUpperCase());
             if (sinhVien.getPassword() != null && !sinhVien.getPassword().trim().isEmpty()) {
                 sinhVien.setPassword(passwordEncoder.encode(sinhVien.getPassword()));
+            } else {
+                // Lấy mã sinh viên làm mật khẩu nếu bỏ trống ô mật khẩu
+                sinhVien.setPassword(passwordEncoder.encode(sinhVien.getMaSinhVien()));
             }
         }
 

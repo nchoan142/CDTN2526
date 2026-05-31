@@ -39,7 +39,7 @@ public class AdminHoiDapController {
 
     @GetMapping
     public String list(Model model, Authentication auth) {
-        String username = auth.getName();
+        String username = auth.getName(); // láy tên username đang đăng nhập (admin, giảng viên)
         boolean isCvht = auth.getAuthorities().stream()
                 .anyMatch(a -> a.getAuthority().equals("ROLE_CVHT"));
 
@@ -126,7 +126,7 @@ public class AdminHoiDapController {
 
         if (maLops.isEmpty()) return Set.of();
 
-        // Tìm sinh viên thuộc các lớp đó
+        // Tìm sinh viên thuộc các lớp chuyên ngành đó
         List<SinhVien> students = svRepo.findByLopChuyenNganhIn(maLops);
         return students.stream()
                 .map(SinhVien::getMaSinhVien)

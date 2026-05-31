@@ -10,5 +10,5 @@ public interface HoiDapRepository extends JpaRepository<HoiDap, Long> {
     List<HoiDap> findByDaDuyetTrueOrderByNgayHoiDesc();
     List<HoiDap> findByDaDuyetFalseOrderByNgayHoiDesc();
     List<HoiDap> findAllByOrderByNgayHoiDesc();
-    List<HoiDap> findByMaSinhVienInOrderByNgayHoiDesc(Collection<String> maSinhViens);
+    List<HoiDap> findByMaSinhVienInOrderByNgayHoiDesc(Collection<String> maSinhVien);
 }

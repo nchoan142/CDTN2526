@@ -139,8 +139,11 @@ public class DataSeeder implements CommandLineRunner {
                         .dienThoai2(getStr(obj, "dienThoai2"))
                         .ghiChu(getStr(obj, "ghiChu"))
                         .khoaNhapHoc(getStr(obj, "khoaNhapHoc"))
-                        .trangThai(getInt(obj, "trangThai"))
+//                        .trangThai(getInt(obj, "trangThai"))
                         .build();
+
+                Integer svInt = getInt(obj, "trangThai");
+                sv.setTrangThai(svInt != null && svInt == 0);
                 sinhVienRepo.save(sv);
             }
             System.out.println(">>> Import sinh vien: " + sinhVienRepo.count());
@@ -166,13 +169,10 @@ public class DataSeeder implements CommandLineRunner {
                         .maNam(getStr(obj, "maNam"))
                         .batDauKyHoc(getStr(obj, "batDauKyHoc"))
                         .ketThucKyHoc(getStr(obj, "ketThucKyHoc"))
-                        .batDauChonLich(getStr(obj, "batDauChonLich"))
-                        .ketThucChonLich(getStr(obj, "ketThucChonLich"))
-                        .batDauLapLich(getStr(obj, "batDauLapLich"))
-                        .ketThucLapLich(getStr(obj, "ketThucLapLich"))
-                        .lastModify(getStr(obj, "lastModify"))
-                        .macDinh(getInt(obj, "macDinh"))
+//                        .macDinh(getInt(obj, "macDinh"))
                         .build();
+                Integer kyInt = getInt(obj, "macDinh");
+                ky.setMacDinh(kyInt != null && kyInt == 0);
                 kyHocRepo.save(ky);
             }
             System.out.println(">>> Import ky hoc: " + kyHocRepo.count());

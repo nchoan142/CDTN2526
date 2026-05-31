@@ -13,6 +13,7 @@ public interface SinhVienRepository extends JpaRepository<SinhVien, Long> {
     List<SinhVien> findByKhoa(String khoa);
     List<SinhVien> findByNganh(String nganh);
     List<SinhVien> findByMaSinhVienContainingIgnoreCase(String maSinhVien);
+    List<SinhVien> findByTenContainingIgnoreCase(String ten);
     List<SinhVien> findByTenContainingIgnoreCaseOrMaSinhVienContainingIgnoreCase(String ten, String maSinhVien);
     boolean existsByMaSinhVien(String maSinhVien);
 }

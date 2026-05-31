@@ -85,9 +85,9 @@ public class AdminKyHocController {
 
     @GetMapping("/macdinh/{id}")
     public String setDefault(@PathVariable Long id, RedirectAttributes ra) {
-        repo.findAll().forEach(k -> { k.setMacDinh(0); repo.save(k); });
+        repo.findAll().forEach(k -> { k.setMacDinh(false); repo.save(k); });
         KyHoc ky = repo.findById(id).orElseThrow();
-        ky.setMacDinh(1);
+        ky.setMacDinh(true);
         repo.save(ky);
         ra.addFlashAttribute("success", "Đã đặt kỳ mặc định!");
         return "redirect:/admin/kyhoc";
