@@ -75,7 +75,7 @@ class AuthControllerTest {
         }
 
         @Test
-        @DisplayName("trả 400 khi mật khẩu sai (đã từng đặt password)")
+        @DisplayName("trả 400 khi mật khẩu sai")
         void shouldReturn400WhenWrongPassword() {
             when(sinhVienRepo.findByMaSinhVien("A38200")).thenReturn(Optional.of(sinhVien));
             when(passwordEncoder.matches("wrong", sinhVien.getPassword())).thenReturn(false);

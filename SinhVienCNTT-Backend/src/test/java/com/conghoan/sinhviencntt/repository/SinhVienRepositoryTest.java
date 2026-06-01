@@ -23,21 +23,21 @@ class SinhVienRepositoryTest {
 
     @Test
     @DisplayName("Lấy dữ liệu của sinh viên nếu sinh viên có trong hệ thống")
-    void getStudentInfoFunc() {
+    void findByMaSinhVien_shouldReturnPresent_whenStudentExists() {
         Optional<SinhVien> found = repo.findByMaSinhVien("A35025");
         assertThat(found).isPresent();
     }
 
     @Test
     @DisplayName("Kiểm tra sinh viên có tồn tại trong hệ thống không?")
-    void checkExistStudentFunc() {
+    void existsByMaSinhVien_shouldReturnCorrectBoolean_basedOnExistence() {
         assertThat(repo.existsByMaSinhVien("A35025")).isTrue();
         assertThat(repo.existsByMaSinhVien("A35099")).isFalse();
     }
 
     @Test
     @DisplayName("Lấy danh sách sinh viên theo lớp chuyên ngành")
-    void getFilterListStudentByClassFunc() {
+    void findByLopChuyenNganh_shouldReturnNotEmptyList_whenClassHasStudents() {
         List<SinhVien> svs = repo.findByLopChuyenNganh("TA33c1");
 
         assertThat(svs).isNotEmpty();
@@ -45,13 +45,13 @@ class SinhVienRepositoryTest {
 
     @Test
     @DisplayName("Lấy danh sách sinh viên theo khóa")
-    void getFilterStudentByFacultyFunc() {
+    void findByKhoa_shouldReturnExpectedSize_whenFacultyHasStudents() {
         assertThat(repo.findByKhoa("33")).hasSize(311);
     }
 
     @Test
     @DisplayName("Lấy danh sách sinh viên theo mã sinh viên hoặc tên sinh viên (không phân biệt chữ hoa/ chữ thường")
-    void getStudentByMsvOrNameIgnoresCaseFunc() {
+    void findByTenContainingOrMaSinhVienContaining_shouldBeCaseInsensitive() {
         assertThat(repo.findByTenContainingIgnoreCaseOrMaSinhVienContainingIgnoreCase("nguyễn công hoàn", "a35025")).isNotEmpty();
         assertThat(repo.findByTenContainingIgnoreCaseOrMaSinhVienContainingIgnoreCase("Nguyễn Công Hoàn", "A35025")).isNotEmpty();
         assertThat(repo.findByTenContainingIgnoreCaseOrMaSinhVienContainingIgnoreCase("Nguyễn Công Hoàn", "a35025")).isNotEmpty();

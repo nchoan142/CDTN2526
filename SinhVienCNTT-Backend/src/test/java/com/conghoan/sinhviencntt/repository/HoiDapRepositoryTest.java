@@ -23,36 +23,36 @@ class HoiDapRepositoryTest {
     HoiDapRepository repo;
 
     @Test
-    @DisplayName("Danh sách câu hỏi của sinh viên theo mã sinh viên")
-    void getListQuestionsByMsv() {
+    @DisplayName("Danh sách câu hỏi trả về rỗng nếu sinh viên không có câu hỏi")
+    void findByMaSinhVien_shouldReturnEmptyList_whenStudentHasNoQuestions() {
         List<HoiDap> questions = repo.findByMaSinhVien("A35092");
-        assertThat(questions).hasSize(0);
+        assertThat(questions).isEmpty();
     }
 
     @Test
     @DisplayName("Danh sách câu hỏi của sinh viên (đã được duyệt) sắp xếp theo ngày hỏi")
-    void getListValidateQuestionsOrderByDate() {
+    void findByDaDuyetTrueOrderByNgayHoiDesc_shouldReturnOnlyApprovedQuestions() {
         List<HoiDap> questions = repo.findByDaDuyetTrueOrderByNgayHoiDesc();
         assertThat(questions).hasSize(3);
     }
 
     @Test
     @DisplayName("Danh sách câu hỏi của sinh viên (chưa được duyệt) sắp xếp theo ngày hỏi")
-    void getListUnValidateQuestionsOrderByDate() {
+    void findByDaDuyetFalseOrderByNgayHoiDesc_shouldReturnOnlyUnapprovedQuestions() {
         List<HoiDap> questions = repo.findByDaDuyetFalseOrderByNgayHoiDesc();
         assertThat(questions).hasSize(3);
     }
 
     @Test
     @DisplayName("Danh sách câu hỏi của sinh viên sắp xếp theo ngày hỏi")
-    void getListQuestionsOrderByDate() {
+    void findAllByOrderByNgayHoiDesc_shouldReturnAllQuestions() {
         List<HoiDap> questions = repo.findAllByOrderByNgayHoiDesc();
         assertThat(questions).hasSize(6);
     }
 
     @Test
     @DisplayName("Danh sách câu hỏi của sinh viên theo mã sinh viên sắp xếp theo ngày hỏi")
-    void getFilterListQuestionsOrderByDate() {
+    void findByMaSinhVienInOrderByNgayHoiDesc_shouldReturnFilteredQuestions_whenGivenSetOfMsv() {
         List<HoiDap> questions = repo.findByMaSinhVienInOrderByNgayHoiDesc(Collections.singleton("A35025"));
         assertThat(questions).hasSize(4);
     }
