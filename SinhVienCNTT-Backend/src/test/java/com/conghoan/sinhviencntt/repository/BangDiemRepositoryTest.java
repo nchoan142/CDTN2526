@@ -21,22 +21,22 @@ class BangDiemRepositoryTest {
 
     @Test
     @DisplayName("Lấy danh sách bảng điểm theo mã sinh viên")
-    void getListScoresByMsv() {
+    void findByMaSinhVien_shouldReturnNotEmptyList_whenStudentHasScores() {
         List<BangDiem> list = repo.findByMaSinhVien("A35025");
         assertThat(list).isNotEmpty();
     }
 
     @Test
     @DisplayName("Lấy danh sách bảng điểm theo mã học phần")
-    void getListScoresByMhp() {
+    void findByMaHocPhan_shouldReturnNotEmptyList_whenCourseHasScores() {
         List<BangDiem> list = repo.findByMaHocPhan("CS121");
         assertThat(list).isNotEmpty();
     }
 
     @Test
     @DisplayName("Lấy danh sách bảng điểm theo mã sinh viên và mã chuyên ngành")
-    void getListScoresByMsvAndMcn() {
-        List<BangDiem> list = repo.findByMaSinhVienAndChuyenNganhId("A35025", "TT");
-        assertThat(list).isNotEmpty();
-    }
+        void findByMaSinhVienAndChuyenNganhId_shouldReturnNotEmptyList_whenStudentHasScoresInMajor() {
+            List<BangDiem> list = repo.findByMaSinhVienAndChuyenNganhId("A35025", "TT");
+            assertThat(list).isNotEmpty();
+        }
 }

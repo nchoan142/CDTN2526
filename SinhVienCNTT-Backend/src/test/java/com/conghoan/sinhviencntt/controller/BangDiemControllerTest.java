@@ -26,7 +26,7 @@ class BangDiemControllerTest {
     @InjectMocks BangDiemController controller;
 
     @Test
-    @DisplayName("GET /{msv} trả về list bảng điểm của sinh viên")
+    @DisplayName("trả về list bảng điểm của sinh viên")
     void getByMsv_shouldReturnList() {
         BangDiem bd = BangDiem.builder().id(1L).maSinhVien("A38200").maHocPhan("CS101").build();
         when(repo.findByMaSinhVien("A38200")).thenReturn(List.of(bd));

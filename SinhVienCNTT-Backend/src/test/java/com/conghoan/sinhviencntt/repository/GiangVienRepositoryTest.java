@@ -23,21 +23,21 @@ class GiangVienRepositoryTest {
 
     @Test
     @DisplayName("Lấy dữ liệu của giảng viên nếu giảng viên có trong hệ thống")
-    void getTeacherInfoFunc() {
+    void findByMaGiangVien_shouldReturnPresent_whenTeacherExists() {
         Optional<GiangVien> found = repo.findByMaGiangVien("CTI064");
         assertThat(found).isPresent();
     }
 
     @Test
-    @DisplayName("Kiểm tra sinh viên có tồn tại trong hệ thống không?")
-    void checkExistTeacherFunc() {
+    @DisplayName("Trả về true nếu giảng viên tồn tại trong hệ thống")
+    void existsByMaGiangVien_shouldReturnCorrectBoolean_basedOnExistence() {
         assertThat(repo.existsByMaGiangVien("CTI060")).isTrue();
         assertThat(repo.existsByMaGiangVien("ZZZ999")).isFalse();
     }
 
     @Test
     @DisplayName("Lấy danh sách giảng viên theo mã giảng viên hoặc tên giảng viên (không phân biệt chữ hoa/ chữ thường")
-    void getTeacherByMsvOrNameIgnoresCaseFunc() {
+    void findByTenContainingOrMaGiangVienContaining_shouldBeCaseInsensitive() {
         assertThat(repo.findByTenContainingIgnoreCaseOrMaGiangVienContainingIgnoreCase("Nguyễn Xuân Thanh", "CTI061")).isNotEmpty();
         assertThat(repo.findByTenContainingIgnoreCaseOrMaGiangVienContainingIgnoreCase("NGUYỄN XUÂN THANH", "CTI061")).isNotEmpty();
     }
