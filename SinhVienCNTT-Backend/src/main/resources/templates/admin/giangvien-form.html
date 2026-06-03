@@ -14,14 +14,12 @@
             <form th:action="@{/admin/giangvien/save}" method="post" th:object="${giangVien}">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="row g-3">
-                    <div class="col-md-4"><label class="form-label">Mã GV *</label><input type="text" class="form-control" th:field="*{maGiangVien}" required/></div>
-<!--                    <div class="col-md-4"><label class="form-label">Họ tên đệm</label><input type="text" class="form-control" th:field="*{hoTenDem}"/></div>-->
-                    <div class="col-md-4"><label class="form-label">Tên *</label><input type="text" class="form-control" th:field="*{ten}" required/></div>
+                    <div class="col-md-4"><label class="form-label">Mã GV *</label><input type="text" class="form-control" th:field="*{maGiangVien}" required maxlength="10" pattern="[a-zA-Z0-9]+" title="Chỉ cho phép nhập chữ cái và số, không chứa khoảng trắng hoặc ký tự đặc biệt"/></div>
+                    <div class="col-md-4"><label class="form-label">Tên *</label><input type="text" class="form-control" th:field="*{ten}" required pattern="[a-zA-Z\sàáạảãâấầậẩẫăắằặẳẵèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđÀÁẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴÈÉẸẺẼÊẾỀỆỂỄÌÍỊỈĨÒÓỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠÙÚỤỦŨƯỨỪỰỬỮỲÝỴỶỸĐ]+" title="Chỉ cho phép nhập chữ cái và khoảng trắng, không chứa số hay ký tự đặc biệt"/></div>
                     <div class="col-md-4"><label class="form-label">Mật khẩu đăng nhập</label><input type="password" class="form-control" name="rawPassword" th:placeholder="${giangVien.id != null} ? 'Để trống nếu không đổi' : 'Mặc định = Mã GV'"/></div>
                     <div class="col-md-3"><label class="form-label">Học vị</label><input type="text" class="form-control" th:field="*{hocVi}" placeholder="ThS, TS, PGS..."/></div>
-<!--                    <div class="col-md-3"><label class="form-label">Học hàm</label><input type="text" class="form-control" th:field="*{hocHam}"/></div>-->
                     <div class="col-md-3"><label class="form-label">Đơn vị</label><input type="text" class="form-control" th:field="*{donVi}"/></div>
-                    <div class="col-md-3"><label class="form-label">SĐT</label><input type="text" class="form-control" th:field="*{dienThoai}"/></div>
+                    <div class="col-md-3"><label class="form-label">SĐT</label><input type="text" class="form-control" th:field="*{dienThoai}" pattern="[0-9]+" title="Chỉ cho phép nhập chứ số, độ dài tối đa 10 ký tự"/></div>
                     <div class="col-md-6"><label class="form-label">Email 1</label><input type="email" class="form-control" th:field="*{email1}"/></div>
                     <div class="col-md-6"><label class="form-label">Email 2</label><input type="email" class="form-control" th:field="*{email2}"/></div>
                     <div class="col-md-1"><div class="form-check mt-4"><input type="checkbox" class="form-check-input" th:field="*{roleGiangVien}" value="1"/><label class="form-check-label">Giảng viên</label></div></div>

@@ -14,15 +14,24 @@
             <form th:action="@{/admin/cvht/save}" method="post" th:object="${cvht}">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="row g-3">
-                    <div class="col-md-4"><label class="form-label">Mã giảng viên *</label><input type="text" class="form-control" th:field="*{maGiangVien}" required/></div>
-                    <div class="col-md-4"><label class="form-label">Mã lớp *</label><input type="text" class="form-control" th:field="*{maLop}" required/></div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mã giảng viên *</label>
+                        <input type="text" class="form-control" th:field="*{maGiangVien}" required maxlength="10" pattern="[a-zA-Z0-9]+" title="Chỉ cho phép nhập chữ cái và số, không chứa khoảng trắng hoặc ký tự đặc biệt"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mã lớp *</label>
+                        <input type="text" class="form-control" th:field="*{maLop}" required maxlength="10" pattern="[a-zA-Z0-9]+" title="Chỉ cho phép nhập chữ cái và số, không chứa khoảng trắng hoặc ký tự đặc biệt"/>
+                    </div>
                     <div class="col-md-4">
                         <label class="form-label">Kỳ học *</label>
                         <select class="form-select" th:field="*{maKy}" required>
                             <option th:each="ky : ${kyHocList}" th:value="${ky.maKy}" th:text="${ky.maKy + ' - ' + ky.tenKy}"></option>
                         </select>
                     </div>
-                    <div class="col-12"><label class="form-label">Ghi chú</label><textarea class="form-control" th:field="*{ghiChu}" rows="2"></textarea></div>
+                    <div class="col-12">
+                        <label class="form-label">Ghi chú</label>
+                        <textarea class="form-control" th:field="*{ghiChu}" rows="2"></textarea>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Lưu</button>

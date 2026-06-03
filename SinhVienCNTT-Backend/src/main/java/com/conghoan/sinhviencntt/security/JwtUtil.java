@@ -12,11 +12,9 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    @Value("${app.jwt.secret}")
-    private String jwtSecret;
+    private final String jwtSecret = "SinhVienCNTT2026SecretKeyForJWTTokenGenerationMustBeLongEnough256Bits";
 
-    @Value("${app.jwt.expiration-ms}")
-    private long jwtExpirationMs; // 24h
+    private final long jwtExpirationMs = 86400000; // 24h
 
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));

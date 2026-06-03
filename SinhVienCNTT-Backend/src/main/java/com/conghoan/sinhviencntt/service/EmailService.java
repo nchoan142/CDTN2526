@@ -11,14 +11,11 @@ import java.net.http.HttpResponse;
 @Service
 public class EmailService {
 
-    @Value("${app.resend.api-key}")
-    private String apiKey;
+    private final String apiKey = "re_34pau2R4_9fXu5vcBo6MzBWNaXJpHLcC6";
 
-    @Value("${app.resend.from}")
-    private String fromEmail;
+    private final String fromEmail = "noreply@qlhtt.io.vn";
 
-    @Value("${app.resend.from-name}")
-    private String fromName;
+    private final String fromName = "SV CNTT";
 
     public boolean sendPassword(String toEmail, String maSinhVien, String password) {
         try {

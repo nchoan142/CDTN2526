@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Người quản lý</label>
-                        <input type="text" class="form-control" th:field="*{nguoiQuanLy}"/>
+                        <input type="text" class="form-control" th:field="*{nguoiQuanLy}" maxlength="10" pattern="[a-zA-Z0-9]+" title="Chỉ cho phép nhập chữ cái và số, không chứa khoảng trắng hoặc ký tự đặc biệt"/>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Danh mục cha (id)</label>
