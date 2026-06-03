@@ -133,9 +133,6 @@ public class AdminSinhVienController {
             sinhVien.setMaSinhVien(sinhVien.getMaSinhVien().toUpperCase());
             if (sinhVien.getPassword() != null && !sinhVien.getPassword().trim().isEmpty()) {
                 sinhVien.setPassword(passwordEncoder.encode(sinhVien.getPassword()));
-            } else {
-                // Lấy mã sinh viên làm mật khẩu nếu bỏ trống ô mật khẩu
-                sinhVien.setPassword(passwordEncoder.encode(sinhVien.getMaSinhVien()));
             }
         }
 

@@ -20,11 +20,11 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Mã học phần *</label>
-                        <input type="text" class="form-control" th:field="*{maHocPhan}" th:readonly="${!isNew}" required/>
+                        <input type="text" class="form-control" th:field="*{maHocPhan}" th:readonly="${!isNew}" required maxlength="10" pattern="[a-zA-Z0-9]+" title="Chỉ cho phép nhập chữ cái và số, không chứa khoảng trắng hoặc ký tự đặc biệt"/>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Mã giảng viên</label>
-                        <input type="text" class="form-control" th:field="*{maGiangVien}"/>
+                        <input type="text" class="form-control" th:field="*{maGiangVien}" maxlength="10" pattern="[a-zA-Z0-9]+" title="Chỉ cho phép nhập chữ cái và số, không chứa khoảng trắng hoặc ký tự đặc biệt"/>
                     </div>
                     <div class="col-md-8">
                         <label class="form-label">Tên học phần *</label>
